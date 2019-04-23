@@ -4,7 +4,6 @@
 ```javascript
 
 ```
-
 ​        function remove(are , item) {
 
 ​            return arr.filter((list) =>{
@@ -22,7 +21,6 @@
 ​        console.log(result)
 
 ```
-
 ```
 
 
