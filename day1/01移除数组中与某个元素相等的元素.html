@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+    //题目描述
+   // 移除数组 arr 中的所有值与 item 相等的元素，直接在给定的 arr 数组上进行操作，并将结果返回
+        function remove(arr , item) {
+            return arr.filter((list) =>{
+                return list !== item
+            })
+        }
+        var arr = [1,2,3,4,5,6,6,6,6,6]
+        var result = remove(arr,6)
+        console.log(result)
+    </script>
+</body>
+
+</html>
