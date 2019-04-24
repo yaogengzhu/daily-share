@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.dropzone {
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			margin: 20px;
+		}
+
+		#draggable {
+			width: 100px;
+			height: 100px;
+			margin: 50px 0 50px 0;
+			background-color: green;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="dropzone">
+		<div id="draggable" draggable="true">
+			该节点可拖拉
+		</div>
+	</div>
+	<div class="dropzone"></div>
+	<div class="dropzone"></div>
+	<div class="dropzone"></div>
+
+	<script>
+
+		// 再说之前，先讲解下addEventListener 事件的三个参数---
+		// 第一个参数，为事件名称， 第二个参数为执行函数， 第三个参数中：true 表示事件在捕获阶段执行，false表示在冒泡阶段执行
+		// 设置被拖拉节点
+		var dragged
+		// dragstart 表示用户在开始拖拽之前，在被拖拉的节点上触发，该事件的target属性是被拖拉的节点,通常应该在这个事件的监听函数中，指定拖拉的数据
+		document.addEventListener('dragstart', function (e) {
+			// 保存拖拉节点
+			console.log(e)
+			dragged = e.target
+			// 设置被拖拉的元素的透明度
+			e.target.style.opacity = 0.5
+			// 第三个参数false 可以不写。默认为false
+		}, false)
+		// dargend  拖拉结束，在被拖拉的节点上触发，该事件的target属性是被拖拉的节点，它和dragstart事件，同一个节点触发，不管咋样，拖拉节点都会被触发
+		document.addEventListener('dragend', function (e) {
+			// 拖拉元素的透明度恢复正常
+			e.target.style.opacity = ''
+		})
+
+
+	</script>
+</body>
+
+</html>
