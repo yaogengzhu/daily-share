@@ -57,3 +57,6 @@
 
 ## 利用css伪类来解决一些css美化问题；
 ![](https://github.com/yaogengzhu/life-share/blob/master/images/page1.png?raw=true)
+### 具体意思
+    - 在CSS中，伪类是可以级联使用的，于是，如果列表可以匹配:first-child:nth-last-child(2)则表示当前<li>元素即是第1个子元素，又是从后往前第2个子元素，因此，我们就能判断当前总共两个<li>子元素，我们就能精准实现我们想要的布局了，只需要配合相邻兄弟选择符加号+以及兄弟选择符弯弯~即可 
+**摘自张旭鑫**
