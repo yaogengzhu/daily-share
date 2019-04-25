@@ -30,3 +30,12 @@
   -  第三：dragenter, 拖拉进入当前目标节点，在当前节点上会触发一次。
   -  第四：dragleave, 拖拉离开当前节点范围时，在当前节点⬆️触发。
   -  第五：drop, 被拖拉的节点，释放到目标节点时，会触发这个事件。这个节点可以触发添加节点或者删除节点。
+
+  ## EventTarget。addEventListener()
+  ### `EventTarget.addEventListener()` 用于在当前节点或者对象傻姑娘，定义一个特定的事件的监听函数。一旦这个事情发生之后，就会执行监听函数，该方法是没有返回值的 。
+  - `target.addEventListener(type,listener[,userCapture])`
+  该方法接收三个参数 。
+    - ** type ** :事件名称，大小写敏感，不含on 
+    - ** listener ** : 监听的事件函数，事件发生时，会执行该事件函数
+    - ** useCapture **: 可选参数（布尔类型的值） ，表示监听的事件函数是否在捕获阶段执行，如果参数是true，则在捕获阶段执行。为false则在冒泡阶段执行！ 默认参数为false。 大多情况下可以不写！
+
