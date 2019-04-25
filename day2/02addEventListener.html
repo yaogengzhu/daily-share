@@ -8,12 +8,19 @@
 </head>
 <body>
     <button id="btn">test</button>
+    <button id="btn1">once</button>
     <script>
         // addEventListener 支持三个参数  
-        
+
         btn.addEventListener('click',function(e){
             alert(e)
         })
+
+        btn1.addEventListener('click',function(e){
+            alert('once')
+        },{once:true})
+
+
     </script>
 </body>
 </html>
