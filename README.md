@@ -57,3 +57,5 @@
 
 ## 插播一个伪元选择器来美化页面
     !['show'](https://github.com/yaogengzhu/life-share/blob/master/images/page1.png?raw=true)
+
+    ![avatar](http://baidu.com/pic/doge.png)
