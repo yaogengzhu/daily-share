@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            top:100px ;
+            left:100px;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">test</button>
+    <div id="dv"></div>
+
+    <script>
+        //  鼠标点击元素开启监听事件
+        dv.addEventListener('mousedown',(e)=>{
+            // 计算鼠标箭头和元素的左边缘和上边缘的距离 
+            var disX = e.pageX - dv.offsetLeft
+            var disY = e.pageY - dv.offsetTop
+            // console.log(dv.offsetLeft)
+            // 当点击时，会一直触发监听鼠标的移动事件（监听document 
+            // document.addEventListener('mousemove', (e) =>{
+            //     // console.log(e)  
+            //     // 设置元素的移动距离
+            //     dv.style.left = e.pageX - disX + 'px'
+            //     dv.style.top = e.pageY - disY + 'px'
+            // })
+            // document.addEventListener('mouseup',(e) =>{
+            //     // 移除两个事件 
+            //     document.removeEventListener('mosedown',(e) =>{
+            //           // console.log(e)  
+            //     // 设置元素的移动距离
+            //     dv.style.left = e.pageX - disX + 'px'
+            //     dv.style.top = e.pageY - disY + 'px'
+            //     })
+            //     document.removeEventListener('mosueup',() =>{})
+            // })
+            // // 阻止默认事件
+            // console.log(e.preventDefault())
+            document.onmousemove = function(e){
+                dv.style.left = e.pageX - disX + 'px'
+                dv.style.top = e.pageY - disY + 'px'
+            }
+            document.onmouseup = function(){
+                document.onmousemove = document.onmouseup = null
+            }
+            e.preventDefault()
+            // 总结： 使用addEventLister()  在移除事件的实际不方便！！ 还是采用普通的事件监听函数～～
+        })
+
+    </script>
+</body>
+</html>
