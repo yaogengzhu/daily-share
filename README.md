@@ -35,7 +35,8 @@
   ### `EventTarget.addEventListener()` 用于在当前节点或者对象傻姑娘，定义一个特定的事件的监听函数。一旦这个事情发生之后，就会执行监听函数，该方法是没有返回值的 。
   - `target.addEventListener(type,listener[,userCapture])`
   该方法接收三个参数 。
-    - ** type ** :事件名称，大小写敏感，不含on 
-    - ** listener ** : 监听的事件函数，事件发生时，会执行该事件函数
-    - ** useCapture **: 可选参数（布尔类型的值） ，表示监听的事件函数是否在捕获阶段执行，如果参数是true，则在捕获阶段执行。为false则在冒泡阶段执行！ 默认参数为false。 大多情况下可以不写！
-
+    - **type** :事件名称，大小写敏感，不含on 
+    - **listener** : 监听的事件函数，事件发生时，会执行该事件函数
+    - **useCapture**: 可选参数（布尔类型的值） ，表示监听的事件函数是否在捕获阶段执行，如果参数是true，则在捕获阶段执行。为false则在冒泡阶段执行！ 默认参数为false。 大多情况下可以不写！
+  - 第二个参数除了可以是一个监听函数之外，还可以是一个handleEvent方法对象。`target.addEventListener('click',{ handleEvent:function(e){console.log(e)}})` // 第三个参数就不写了
+  - 第三个参数不仅可以选，还可以设置。
