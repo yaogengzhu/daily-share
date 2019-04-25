@@ -56,4 +56,4 @@
 
 
 ## 插播一个伪元选择器来美化页面
-    ![image](https://github.com/yaogengzhu/life-share/blob/master/images/page1.png?raw=true)
+    !['show'](https://github.com/yaogengzhu/life-share/blob/master/images/page1.png?raw=true)
