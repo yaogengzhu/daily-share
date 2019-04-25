@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        h4{
+            float: left;
+        }
+        ul {
+            float: left;
+            width: 240px;
+            height: 240px;
+            background-color: #ccc;
+            list-style: none;
+        }
+
+        li {
+            background: url('http://www.52doutuwang.com/ueditor/php/upload/image/20180929/1538207221107712.jpg');
+            background-size: 100%;
+            outline: 1px solid blue;
+        }
+
+        /* 一个图的时候 */
+        li:only-child {
+            height: 100%;
+        }
+
+        /* 两个图的时候 */
+        li:first-child:nth-last-child(2),
+        li:first-child:nth-last-child(2)+li {
+            width: 50%;
+            height: 50%;
+        }
+
+        li:first-child:nth-last-child(2)+li {
+            margin-left: auto;
+        }
+
+        /* 三个图 */
+        li:first-child:nth-last-child(3),
+        li:first-child:nth-last-child(3)~li {
+            width: 50%;
+            height: 50%;
+        }
+        li:first-child:nth-last-child(3) {
+            margin: 0 auto;
+        }
+
+        li:first-child:nth-last-child(3)~li {
+            float: left;
+        }
+
+        /*  5 */
+        li:first-child:nth-last-child(5) {
+            float: left;
+            width: 160px;
+            height: 160px;
+        }
+
+        li:first-child:nth-last-child(5)~li {
+            float: left;
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <h4>一个图</h4>
+    <ul>
+        <Li></Li>
+    </ul>
+    <h4>二个图</h4>
+    <ul>
+        <li></li>
+        <li></li>
+    </ul>
+    <h4>三个图</h4>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <h4>5个图</h4>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+
+</html>
