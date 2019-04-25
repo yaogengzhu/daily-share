@@ -55,7 +55,5 @@
     - 当然参数基本保持一样就不会出现什么问题了。
 
 
-## 插播一个伪元选择器来美化页面
-    !['show'](https://github.com/yaogengzhu/life-share/blob/master/images/page1.png?raw=true)
-
-    ![avatar](http://baidu.com/pic/doge.png)
+## 利用css伪类来解决一些css美化问题；
+![](https://github.com/yaogengzhu/life-share/blob/master/images/page1.png?raw=true)
