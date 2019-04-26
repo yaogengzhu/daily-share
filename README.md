@@ -60,3 +60,137 @@
 ### 具体意思
     - 在CSS中，伪类是可以级联使用的，于是，如果列表可以匹配:first-child:nth-last-child(2)则表示当前<li>元素即是第1个子元素，又是从后往前第2个子元素，因此，我们就能判断当前总共两个<li>子元素，我们就能精准实现我们想要的布局了，只需要配合相邻兄弟选择符加号+以及兄弟选择符弯弯~即可 
 **摘自张旭鑫**
+
+##  鼠标的11个事件
+### 具体的事件解释如下：
+- click：按下鼠标（通常是按下主按钮）时触发。
+- dblclick：在同一个元素上双击鼠标时触发。
+- mousedown：按下鼠标键时触发。
+- mouseup：释放按下的鼠标键时触发。
+- mousemove：当鼠标在一个节点内部移动时触发。当- 鼠标持续移动时，该事件会连续触发。为了避免性能问题，建议对该事件的监听函数做一些限定，比如限定一段时间内只能运行一次。
+- mouseenter：鼠标进入一个节点时触发，进入子节点不会触发这个事件（详见后文）。
+- mouseover：鼠标进入一个节点时触发，进入子节点会再一次触发这个事件（详见后文）。
+- mouseout：鼠标离开一个节点时触发，离开父节点也会触发这个事件（详见后文）。
+- mouseleave：鼠标离开一个节点时触发，离开父节点不会触发这个事件（详见后文）。
+- contextmenu：按下鼠标右键时（上下文菜单出现前）触发，或者按下“上下文菜单键”时触发。
+- wheel：滚动鼠标的滚轮时触发，该事件继承的是WheelEvent接口。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            margin: 30px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        h4 {
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            margin: 20px;
+            width: 30px;
+            height: 30px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<button id="btn1">click</button>
+<button id="btn2">dblclick</button>
+<button id="btn3">mousedown</button>
+<button id="btn4">mouseup</button>
+<div id="btn6">
+    <h4>mouseenter</h4>
+    <h4>mouseover</h4>
+    <div class="box"></div>
+</div>
+
+<div id="btn7">
+    <h4>mouseout</h4>
+    <div class="box"></div>
+</div>
+
+<div id="btn8">
+    <h4>mouseleave</h4>
+    <div class="box"></div>
+</div>
+
+<div id="btn9">
+    <h4>contextmenu</h4>
+    <div class="box"></div>
+</div>
+
+<body>
+    <script>
+        // 事件1 click ： 按下鼠标即可以触发
+        btn1.addEventListener('click', function () {
+            alert('click')
+        })
+        // 事件2 dblclick : 双击鼠标可以触发事件  notice: 是dblclick
+        btn2.addEventListener('dblclick', function () {
+            alert('dbclick')
+        }, { once: true })   // 加啦once 只会触发一次。。。
+        // 事件3 mousedown  按下鼠标键时触发 notice:此时我们监听的是对于按钮按下鼠标键才会触发
+        btn3.addEventListener('mousedown', function () {
+            alert('mousedown')
+        })
+        // 事件4 mouseup  // 点击按钮释放鼠标键时才会触发 
+        btn4.addEventListener('mouseup', function () {
+            alert('btn-mouseup')
+        })
+        // 事件4 mouseup  // 释放鼠标键时将会触发  那就绑定为document的全局事件
+        document.addEventListener('mouseup', function () {
+            alert('mouseup')
+        })   // notice 在为看来，不要在全局绑定这样的事件，这样的事件一般在函数内去触发
+        // 事件5 mousemove  鼠标在移动时触发，但是会持续触发。(test 时，也使用去全局触发)
+        document.addEventListener('mousemove', function () {
+            // console.log('moving……')
+        })
+        // 事件6 鼠标进进入节点的一瞬间会立刻触发，当进入子节点，或者离开时不会触发
+        btn6.addEventListener('mouseenter', function () {
+            // console.log('i am comming ^_^')
+        })
+        // 事件7 鼠标进入节点会触发这个事件。进入子节点还会触发这个事件 
+        btn6.addEventListener('mouseover', function () {
+            console.log('i am mouseover')
+        })  // 注意 这个与mouseenter 相比。会多触发两次 。离开节点进入自节点会触发，离开子节点，进入父级节点还会触发一次
+        // 事件8 mouseout 鼠标离开节点时触发。当鼠标进入子接点，相当离开父节点，一样会触发该事件。从子节点离开，进入父级节点一样会触发该事件！
+        btn7.addEventListener('mouseout', function () {
+            console.log('i am mouseout')
+        })
+        // 事件9 mouseleave   // 只有在父级节点出去的时候才会触发。不会在子节点中触发
+        btn8.addEventListener('mouseleave', function () {
+            console.log('i am mouseleva')
+        })
+        // 事件10 contextmenu  // 点击右键触发
+        btn9.addEventListener('contextmenu',function(){
+            console.log('i am contextmenu')
+        })
+        // 事件11 wheel  
+        document.addEventListener('wheel',function(){
+            console.log('i am mousewheel')
+        })
+
+    </script>
+</body>
+
+</html>
+
+```
+
+### 总结 
+- **click** 事件是指的是，用户在同一个位置完成mousedown动作，在完成mouseup动作。因此呢，执行的顺序分别为，mousedown 首先触发 -后续执行mouseup,然后执行click 
+- **dbclick** 事件会在mousedown - mouseup click - 后执行！
+- **mouseenter 和 mouseover** 都是鼠标进入事件触发，但是两者的区别是。前者只触发一次，后者会在子节点上多次触发。
+- **mouseout mouseleave** 都是鼠标离开时候触发。但两者的区别是，前者会在子节点内多次触发。后者只会离开节点时触发。
