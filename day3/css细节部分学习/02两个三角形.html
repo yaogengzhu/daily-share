@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #ddd;
+        }
+        .father{
+            width: 600px;
+            margin: 0 auto;
+        }
+        .left {
+            float: left;
+            width: 200px;
+            height: 500px;
+            shape-outside: polygon(0 0, 100% 0, 0% 100%);
+            border: 1px solid blue;
+        }
+
+        .right {
+            float: right;
+            width: 200px;
+            height: 500px;
+            shape-outside: polygon(100% 0, 100% 100%, 0 100%);
+            border: 1px solid blue;
+        }
+
+        .content {
+            display: block;
+            position: relative;
+            padding: 1px;
+            z-index: 0;
+        }
+
+        .content::before {
+            content: "";
+            position: absolute;
+            background-color: #fff;
+            transform: skewX(-15deg);
+            left: 50px;
+            right: 50px;
+            top: 0;
+            bottom: 0;
+            border: 1px solid red;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="left">
+            <p>这是怎么回事？</p>
+            <p>这是怎么回事？</p>
+            <p>这是怎么回事？</p>
+            <p>这是怎么回事？</p>
+            <p>这是怎么回事？</p>
+            <p>这是怎么回事？</p>
+            <p>这是怎么回事？</p>
+        </div>
+        <div class="right">
+            <p>我还在蒙圈中～～～～</p>
+            <p>我还在蒙圈中～～～～</p>
+            <p>我还在蒙圈中～～～～</p>
+            <p>我还在蒙圈中～～～～</p>
+            <p>我还在蒙圈中～～～～</p>
+            <p>我还在蒙圈中～～～～</p>
+        </div>
+        <div class="content">
+            <p>tset </p>
+            <p>tset </p>
+            <p>tset </p>
+            <p>tset </p>
+            <p>tset </p>
+            <p>tset </p>
+            <p>tset </p>
+            <p>tset </p>
+            <p>tset </p>
+            <p>tset </p>
+            <p>tset </p>
+            <p>tset </p>
+        </div>
+    </div>
+</body>
+
+</html>
