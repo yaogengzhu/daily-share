@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        input {
+            padding: 8px 10px;
+            display: block;
+            background: none;
+            border: 0;
+            outline: none;
+        }
+        .input-x{
+            display: inline-block;
+            position: relative;
+            z-index: 0;
+        }
+        .input-x::before{
+            content: "";
+            position: absolute;
+            top: 0;right: 0;bottom: 0;left: 0;
+            border: 2px solid #ccc;
+            background-color: #fff;
+            border-radius: 4px;
+            transform: skewX(-10deg);
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="input-x">
+        <input type="text" placeholder="请输入关键字" id="input">
+    </div>
+    <!-- 总节：因为在input框中直接对其倾斜的话，会影响到文字也变得倾斜。所以在设计的时候，不是改变input框的参数，而是该给添加一个伪类。 -->
+    <script>
+        console.dir(input.value)
+        input.addEventListener('keyup',(e) =>{
+            console.log(input.value)
+            //  
+        })
+    </script>
+</body>
+
+</html>
