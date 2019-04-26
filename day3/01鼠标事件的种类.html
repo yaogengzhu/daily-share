@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            margin: 30px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        h4 {
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            margin: 20px;
+            width: 30px;
+            height: 30px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<button id="btn1">click</button>
+<button id="btn2">dblclick</button>
+<button id="btn3">mousedown</button>
+<button id="btn4">mouseup</button>
+<div id="btn6">
+    <h4>mouseenter</h4>
+    <h4>mouseover</h4>
+    <div class="box"></div>
+</div>
+
+<div id="btn7">
+    <h4>mouseout</h4>
+    <div class="box"></div>
+</div>
+
+<div id="btn8">
+    <h4>mouseleave</h4>
+    <div class="box"></div>
+</div>
+
+<div id="btn9">
+    <h4>contextmenu</h4>
+    <div class="box"></div>
+</div>
+
+<body>
+    <script>
+        // 事件1 click ： 按下鼠标即可以触发
+        btn1.addEventListener('click', function () {
+            alert('click')
+        })
+        // 事件2 dblclick : 双击鼠标可以触发事件  notice: 是dblclick
+        btn2.addEventListener('dblclick', function () {
+            alert('dbclick')
+        }, { once: true })   // 加啦once 只会触发一次。。。
+        // 事件3 mousedown  按下鼠标键时触发 notice:此时我们监听的是对于按钮按下鼠标键才会触发
+        btn3.addEventListener('mousedown', function () {
+            alert('mousedown')
+        })
+        // 事件4 mouseup  // 点击按钮释放鼠标键时才会触发 
+        btn4.addEventListener('mouseup', function () {
+            alert('btn-mouseup')
+        })
+        // 事件4 mouseup  // 释放鼠标键时将会触发  那就绑定为document的全局事件
+        document.addEventListener('mouseup', function () {
+            alert('mouseup')
+        })   // notice 在为看来，不要在全局绑定这样的事件，这样的事件一般在函数内去触发
+        // 事件5 mousemove  鼠标在移动时触发，但是会持续触发。(test 时，也使用去全局触发)
+        document.addEventListener('mousemove', function () {
+            // console.log('moving……')
+        })
+        // 事件6 鼠标进进入节点的一瞬间会立刻触发，当进入子节点，或者离开时不会触发
+        btn6.addEventListener('mouseenter', function () {
+            // console.log('i am comming ^_^')
+        })
+        // 事件7 鼠标进入节点会触发这个事件。进入子节点还会触发这个事件 
+        btn6.addEventListener('mouseover', function () {
+            console.log('i am mouseover')
+        })  // 注意 这个与mouseenter 相比。会多触发两次 。离开节点进入自节点会触发，离开子节点，进入父级节点还会触发一次
+        // 事件8 mouseout 鼠标离开节点时触发。当鼠标进入子接点，相当离开父节点，一样会触发该事件。从子节点离开，进入父级节点一样会触发该事件！
+        btn7.addEventListener('mouseout', function () {
+            console.log('i am mouseout')
+        })
+        // 事件9 mouseleave   // 只有在父级节点出去的时候才会触发。不会在子节点中触发
+        btn8.addEventListener('mouseleave', function () {
+            console.log('i am mouseleva')
+        })
+        // 事件10 contextmenu  // 点击右键触发
+        btn9.addEventListener('contextmenu',function(){
+            console.log('i am contextmenu')
+        })
+        // 事件11 wheel  
+        document.addEventListener('wheel',function(){
+            console.log('i am mousewheel')
+        })
+
+    </script>
+</body>
+
+</html>
