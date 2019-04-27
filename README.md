@@ -194,3 +194,25 @@
 - **dbclick** 事件会在mousedown - mouseup click - 后执行！
 - **mouseenter 和 mouseover** 都是鼠标进入事件触发，但是两者的区别是。前者只触发一次，后者会在子节点上多次触发。
 - **mouseout mouseleave** 都是鼠标离开时候触发。但两者的区别是，前者会在子节点内多次触发。后者只会离开节点时触发。
+## 键盘事件的种类
+    键盘事件是由用户敲击键盘时触发的，主要的事件有，keydown/keyup/keypress/三个事件。都继承自 `keyboardEvent` 接口
+- `keydown`:按下键盘时触发
+-  `keypress`:按下具体的键盘值触发。即Ctrl、Alt、Shfit、Meta这样无值的的键。这个事件不会触发。。。对于有值的事件，按下时首先会触发keydown事件，再触发这事件。
+- `keyup`: 松开键盘时触发。
+**触发事件顺序** 如果用户一直在按着键盘不放，首先会触发keydown---keypress---keydown-----keypress--- 直到键盘抬起触发-keyup
+
+```javaScript
+    document.body.addEventListener('keydown',function(e){
+        console.log(e.key)
+        switch(e.key){
+            case 'Enter':
+                // console.log('Enter事件')
+                test()
+                break
+            case 'h':
+            console.log('h事件')
+            break
+            }
+    },false)
+```
+

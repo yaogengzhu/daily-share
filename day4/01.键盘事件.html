@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 键盘的触发事件的种类
+        // 1. 事件1 keydown 按下键盘时触发。
+        // document.addEventListener('keydown',function(e){
+        //     console.log()
+        // })  
+        // 该事件是➡️document.body.addEventListener() // 绑定的监听事件。 
+        document.body.addEventListener('keydown',function(e){
+            console.log(e.key)
+            switch(e.key){
+               case 'Enter':
+                    // console.log('Enter事件')
+                    test()
+                    break
+                case 'h':
+                    console.log('h事件')
+                    break
+            }
+        },false)
+
+        // 总结。通过上面的小demo可以知道通过键盘的键来指定触发的事件  
+        // function test(){
+        //     console.log('我只想测试下！')
+        // }
+        // 可以通过判断执行我们想调用执行语句哈～
+        // console.log(KeyboardEvent.enter)
+
+
+        //  test  第二阶段  
+        document.body.addEventListener('keydown', function (e) {
+            // 判断是否同时按住control 和 enter 。才会执行函数！
+            console.log(e);
+            if (e.ctrlkey) {
+                console.log('ok')
+            }
+        })
+        function showChar(e) {
+            console.log('ALT: ' + e.altKey);
+            console.log('CTRL: ' + e.ctrlKey);
+            console.log('Meta: ' + e.metaKey);
+            console.log('Shift: ' + e.shiftKey);
+        }
+        document.body.addEventListener('keydown', showChar, false);
+    </script>
+</body>
+
+</html>
