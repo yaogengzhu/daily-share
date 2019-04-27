@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container" class="container">
+        <section>
+            <img src="https://image.zhangxinxu.com/image/study/s/s256/mm.jpg" alt="外层图片">
+            <p>
+                <img src="https://image.zhangxinxu.com/image/study/s/s256/mm1.jpg" alt="示意图1">
+                <img src="https://image.zhangxinxu.com/image/study/s/s256/mm2.jpg" alt="示意图2">
+                <img id="compareImg" src="https://image.zhangxinxu.com/image/study/s/s256/mm3.jpg" alt="示意图3">
+                <img src="https://image.zhangxinxu.com/image/study/s/s256/mm4.jpg" alt="示意图4">
+                <img src="https://image.zhangxinxu.com/image/study/s/s256/mm5.jpg" alt="示意图5">
+            </p>
+        </section>
+    </div>
+    <img src="https://image.zhangxinxu.com/image/study/s/s256/mm5.jpg" alt="">
+
+    <h4>题目地址：<a href="https://www.zhangxinxu.com/wordpress/2019/03/dom-contains-comparedocumentposition/">点我</a></h4>
+</body>
+<script>
+    // 点击页面判断当前元素是否是#container的子元素 
+    //  使用原生javaScript 自带的api    contains() // 可以判断出来 
+    // 点击该事件。获取元素
+    // window.addEventListener('click',(e) =>{
+        // console.log(e.path[0])
+        // console.log(e.path[0] ==="img"
+        // console.log(container.contains(e.path[0]))
+    // })
+    var img = document.getElementsByTagName('img')
+    for (var i =0 ;i<img.length ; i++){
+        img[i].addEventListener('click',function(){
+            console.log(container.contains(this))
+            // console.log(this)
+        })
+    }
+    // img.forEach(element => {
+    //     element.addEventListener('click',(e) =>{
+    //         console.log(container.contains(this))
+    //     })
+    // })
+    // 点击页面判断档期那元素是否是img 元素 
+    // 如果1和2 同时满足，则设置点击的outline为：2px solid ,否则取消img 的outline 
+    for (var i = 0; i< img.length ; i++) {
+        img[i].addEventListener('click',function(e){
+            //  查看e。  里面有元素target // target中有nodeName
+            console.log(e.target.nodeName )
+            if(container.contains(this) && e.target.nodeName ==='IMG') {
+                console.log('ok')
+                for (var i=0; i< img.length; i++){
+                    img[i].style.outline = ''
+                }
+                this.style.outline = '2px solid red'
+                
+            }
+        })
+    }
+    
+    //  下面的代码为test代码 ～！
+    // for (var i=0; i<img.length; i++ ){
+    //     // console.log(img[i].style)
+    //     img[i].addEventListener('click',function(e){
+    //         console.log(this)
+    //         // console.log(e.target)
+    //         // console.log(container.contains(this))
+    //         // this.nextElementSibling.style.outline = ''
+    //         for(var i = 0 ; i< img.length; i ++){
+    //             img[i].style.outline = ''
+    //         }
+    //         this.style.outline = '2px solid red'
+    //         // console.log(img[i])
+    //     })
+    //     // img[i].onclick = function(){
+    //     //     // console.log(img)
+    //     //     console.log(this)
+    //     // }
+    // }
+</script>
+
+</html>
