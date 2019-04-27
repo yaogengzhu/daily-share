@@ -50,18 +50,30 @@
     // 如果1和2 同时满足，则设置点击的outline为：2px solid ,否则取消img 的outline 
     for (var i = 0; i< img.length ; i++) {
         img[i].addEventListener('click',function(e){
+            //  留一个问题明天处理～～～～   
+
+            
             //  查看e。  里面有元素target // target中有nodeName
-            console.log(e.target.nodeName )
+          if ( this.compareDocumentPosition(compareImg ) & this.DOCUMENT_POSITION_PRECEDING ){
+                console.log('文档之前')
+                
+          } else if (this.compareDocumentPosition(compareImg) & this.DOCUMENT_POSITION_FOLLOWING){
+              console.log('文档之后')
+          }
+
+
             if(container.contains(this) && e.target.nodeName ==='IMG') {
                 console.log('ok')
                 for (var i=0; i< img.length; i++){
                     img[i].style.outline = ''
+                    img[i].style.boxShadow = ''
                 }
                 this.style.outline = '2px solid red'
-                
+                this.style.boxShadow = '2px 2px 10px 10px rgba(0,0,0,0.5)'
             }
         })
     }
+
     
     //  下面的代码为test代码 ～！
     // for (var i=0; i<img.length; i++ ){
