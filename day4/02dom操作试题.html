@@ -30,13 +30,13 @@
     //  使用原生javaScript 自带的api    contains() // 可以判断出来 
     // 点击该事件。获取元素
     // window.addEventListener('click',(e) =>{
-        // console.log(e.path[0])
-        // console.log(e.path[0] ==="img"
-        // console.log(container.contains(e.path[0]))
+    // console.log(e.path[0])
+    // console.log(e.path[0] ==="img"
+    // console.log(container.contains(e.path[0]))
     // })
     var img = document.getElementsByTagName('img')
-    for (var i =0 ;i<img.length ; i++){
-        img[i].addEventListener('click',function(){
+    for (var i = 0; i < img.length; i++) {
+        img[i].addEventListener('click', function () {
             console.log(container.contains(this))
             // console.log(this)
         })
@@ -48,33 +48,46 @@
     // })
     // 点击页面判断档期那元素是否是img 元素 
     // 如果1和2 同时满足，则设置点击的outline为：2px solid ,否则取消img 的outline 
-    for (var i = 0; i< img.length ; i++) {
-        img[i].addEventListener('click',function(e){
-            //  留一个问题明天处理～～～～   
-
-            
+    for (var i = 0; i < img.length; i++) {
+        img[i].addEventListener('click', function (e) {
+            //  留一个问题明天处理～～～～  
+            // clear()  
             //  查看e。  里面有元素target // target中有nodeName
-          if ( this.compareDocumentPosition(compareImg ) & this.DOCUMENT_POSITION_PRECEDING ){
+            // console.log(this)
+            if (this.compareDocumentPosition(compareImg) & this.DOCUMENT_POSITION_FOLLOWING) {
                 console.log('文档之前')
-                
-          } else if (this.compareDocumentPosition(compareImg) & this.DOCUMENT_POSITION_FOLLOWING){
-              console.log('文档之后')
-          }
+                // console.log(this)
+                this.style.outline = '2px solid red'
+
+            } else if (this.compareDocumentPosition(compareImg) & this.DOCUMENT_POSITION_PRECEDING) {
+                console.log('文档之后')
+                this.style.outline = '2px solid green'
+            } else if (this.compareDocumentPosition(compareImg) & this.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC) {
+                this.style.outline = '2px solid blue'
+            }
 
 
-            if(container.contains(this) && e.target.nodeName ==='IMG') {
-                console.log('ok')
-                for (var i=0; i< img.length; i++){
+            if (container.contains(this) && e.target.nodeName === 'IMG') {
+                // console.log('ok')
+                for (var i = 0; i < img.length; i++) {
                     img[i].style.outline = ''
                     img[i].style.boxShadow = ''
                 }
-                this.style.outline = '2px solid red'
+                this.style.outline = '2px solid pink'
                 this.style.boxShadow = '2px 2px 10px 10px rgba(0,0,0,0.5)'
             }
         })
     }
+    //  清掉其他样式的function 
+    //  留下了一个bug
+    // function clear() {
+    //     for (var i = 0; img.length; i++) {
+    //         console.log(img[i])
+    //         img[i].style.outline = ''
+    //     }
+    // }
 
-    
+
     //  下面的代码为test代码 ～！
     // for (var i=0; i<img.length; i++ ){
     //     // console.log(img[i].style)
