@@ -65,8 +65,6 @@
             } else if (this.compareDocumentPosition(compareImg) & this.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC) {
                 this.style.outline = '2px solid blue'
             }
-
-
             if (container.contains(this) && e.target.nodeName === 'IMG') {
                 // console.log('ok')
                 for (var i = 0; i < img.length; i++) {
@@ -79,7 +77,7 @@
         })
     }
     //  清掉其他样式的function 
-    //  留下了一个bug
+    //  留下了一个bug(在点击的时候调用？ 竟然会报错～～)
     // function clear() {
     //     for (var i = 0; img.length; i++) {
     //         console.log(img[i])

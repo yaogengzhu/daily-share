@@ -216,3 +216,7 @@
     },false)
 ```
 
+## 关于JavaScript中两个原生API的使用介绍 -- 在代码里写的很清楚了 
+- 第一个是contains   
+- 第二个是compareDocumentPosition()   ['地址'](https://developer.mozilla.org/zh-CN/docs/Web/API/Node/compareDocumentPosition)
+- 具体API介绍，可以上MDN上。
