@@ -220,3 +220,13 @@
 - 第一个是contains   
 - 第二个是compareDocumentPosition()   ['地址'](https://developer.mozilla.org/zh-CN/docs/Web/API/Node/compareDocumentPosition)
 - 具体API介绍，可以上MDN上。
+
+## 浏览器的进度事件
+ 进度事件用来描述资源加载的进度，主要是由ajax请求。img、audio、video、style、link等外部资源的加载触发。继承了progressEvent接口。主要有以下几个事件
+ - abort: 外部资源中止加载时（用户取消）触发。但是如果发生错误导致终止，该事件不会触发 
+ - error: 由于错误导致外部资源无法加载时触发。
+ - load: 外部资源加载成功时触发 
+ - loadstrat: 外部资源开始加载时触发 
+ - loadend: 外部资源停止加载时触发，发生顺序排在error、abort、load等事件的后面。
+ - progress: 外部资源加载不断的触发 
+ - timeout: 加载超时时触发。

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .finished{
+            border: 10px solid red;
+        }
+    </style>
+</head>
+<body>
+    <img src="../images/page1.png" alt="" >
+    <script>
+        var img = document.getElementsByTagName('img')[0]
+        img.addEventListener('load',function(e){
+            console.log('ok')
+            //  可以判断成功的加载了图片 ,成功加载可以设置一个样式 
+            this.classList.add('finished')
+
+        })
+        img.addEventListener('error',function(){
+            // 图片加载失败
+            console.log('加载失败～')
+        })
+    </script>
+</body>
+</html>
