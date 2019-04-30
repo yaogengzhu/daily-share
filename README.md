@@ -230,3 +230,20 @@
  - loadend: 外部资源停止加载时触发，发生顺序排在error、abort、load等事件的后面。
  - progress: 外部资源加载不断的触发 
  - timeout: 加载超时时触发。
+
+
+ ## 使用document.scrollingElement控制窗体滚动高度  
+### 为何会有document.scrollingElement?  
+如果只是为了获取当前页面的窗体的滚动高度，直接使用window.pageYOffset就可以（IE9+） ,桌面和移动端都是支持的 
+但是windows.pageYOffset是一个只读的属性，我们无法用来设置窗体的滚动高度，此时，就要找到对应的滚动元素，通过设置scrollTop的值来改变窗体的滚动位置。
+**注意** 对于桌面端和手机端窗口的滚动元素都是不一样的
+- `document.documentElement.scrollTop` 是可以获取pc端窗口的滚动大小。
+- `document.body.scrollTop` 是可以用来获取手机端滚动窗体的大小。
+####  具体的demo 可以参考day5中的测试代码。
+**通过上面两个例子可以知道获取滚动高度不一致的现象是兼容问题引起的**如果需要做适配，则需要写兼容代码。（就是两个代码一起写）
+**因此`document.scrollingElement`这个属性才应运而生。可以直接动态的识别滚动的容器，无需在多写一连串的代码**
+**`document.scrollingElement`** 在桌面端就是documen.documentElement,在移动端就是document.body
+当然也可以直接设置其`scrollTop`的属性值来改变窗体的位置。
+**本文参考张旭鑫---  建议以后使用`document.scrollingElement`来获取窗口的高度**
+
+

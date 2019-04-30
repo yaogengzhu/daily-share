@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .result{
+            position: fixed;
+            /* 鼠标不能点击 */
+            pointer-events: none; 
+            top: 0px;right: 0;bottom: 0;left: 0;
+            padding: 8px;
+            font-size: 12px;
+            max-height: 100vh;
+            white-space: pre-wrap;
+            overflow: hidden;
+        }
+    </style>
+    
+</head>
+<body>
+    <div style="height:4000px"></div>
+    <div id="result" class="result"></div>
+    <script>
+        // console.log(window.pageXOffset)    
+        var log = ''
+        window.addEventListener('scroll',function(e){
+            // console.log(document.documentElement.scrollTop)
+            // ie 
+            // console.log(document.body.scrollTop)
+            //使用documnet.body.scrollTop. 无法监听到浏览器滚动的高度-
+            // console.log(window.pageXOffset)
+            log += '\ndocument.documentElement.scrollTop:'+ document.documentElement.scrollTop + '\ndoucument.body.scrollTop是：'+ document.body.scrollTop;
+            // result.innerHTMl = log
+         
+            var result = document.querySelector('#result')
+            // console.log(result)
+            result.innerHTML = log;
+            // result.scrollTop = 9999;
+
+        })
+    </script>
+</body>
+</html>
