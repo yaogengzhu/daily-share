@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            height: 3000px;
+        }
+        button{
+            position: fixed;
+            right: 20px;
+            bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>header</h1>
+    <button>back</button>
+    <script>
+        var btn = document.getElementsByTagName('button')[0]
+        document.addEventListener('scroll',function(){
+            // console.log('ok')
+            // console.log(document.scrollingElement.scrollTop)
+            // 设置scorllTop 的高度 
+            btn.addEventListener('click',function(){
+                setTimeout(function(){
+                    document.scrollingElement.scrollTop = 0
+                },10)
+            })
+        })
+    </script>
+</body>
+</html>
