@@ -261,7 +261,7 @@ input事件当input、 select 、textarea、的值发生变化时就会触发，
 **`select事件`**select事件当在input、textarea里选中文本时会触发 
 **`change事件`** 该事件特点不会连续触发，只有当用户输入完成之后才会触发。
 **invalid事件**用户提交表单的验证事件，如果表单元素的值不满足校验条件。则就会触发invalid事件。 
-**reset,submit 事件** 这两个事件都发生在表单对象<form>上，而不是发生在表单成员傻姑娘
+**reset,submit 事件** 这两个事件都发生在表单对象<form>上，而不是发生在表单成员上。
 - **`reset`** 事件当表单重置（所有的表单成员都会变成默认值）时触发 
 - **`submit`** 事件当数据向服务器提交时触发 。非常需要注意的时`submit`事件的发生对象时<form>元素，不是<button>
 
