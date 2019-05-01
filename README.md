@@ -270,6 +270,8 @@ input事件当input、 select 、textarea、的值发生变化时就会触发，
     - 改变location中的hash值来实现会使浏览器触发原生的滚动行为
     - 切换效果十分生硬效果不好。
 
+- 结合input框的onfocus来实现的效果很棒～可以参考 **day6 06---.html**
+
 **记住以后在敲代码过程中** 加上这个代码有意外的效果，返回按钮再也不用做其他更多的操作来。
 ```css
 html, body { scroll-behavior:smooth; }
