@@ -265,5 +265,13 @@ input事件当input、 select 、textarea、的值发生变化时就会触发，
 - **`reset`** 事件当表单重置（所有的表单成员都会变成默认值）时触发 
 - **`submit`** 事件当数据向服务器提交时触发 。非常需要注意的时`submit`事件的发生对象时<form>元素，不是<button>
 
+## css中的scroll-behaviour 和js 中的scrollIntoView让页面滚动平滑
+- 在没有这没用这个方式之前，平时测试时使用的css锚点定位可以实现，但是这个种方式会带累这样的缺点
+    - 改变location中的hash值来实现会使浏览器触发原生的滚动行为
+    - 切换效果十分生硬效果不好。
 
-
+**记住以后在敲代码过程中** 加上这个代码有意外的效果，返回按钮再也不用做其他更多的操作来。
+```css
+html, body { scroll-behavior:smooth; }
+```
+- 注意一定的兼容性～
