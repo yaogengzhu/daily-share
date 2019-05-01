@@ -246,4 +246,24 @@
 当然也可以直接设置其`scrollTop`的属性值来改变窗体的位置。
 **本文参考张旭鑫---  建议以后使用`document.scrollingElement`来获取窗口的高度**
 
+##  表单事件的种类
+### input事件 
+input事件当input、 select 、textarea、的值发生变化时就会触发，对于复选框或者单选框，用户改变选项时，也会触发这个事件，另外，对于contentditable属性的元素，只要值发生变化，也会触发input事件。
+**input事件特点** 会连续触发，用户只要每次按键。就会触发一次input事件
+```js
+  <script>
+        input.addEventListener('input',(e) =>{
+            console.log(e)
+        })
+    </script>
+```
+>input事件跟change事件十分相似，都是会监听input输入事件，但是`change`事件不同的是会只有当离开焦点时才会触发。
+**`select事件`**select事件当在input、textarea里选中文本时会触发 
+**`change事件`** 该事件特点不会连续触发，只有当用户输入完成之后才会触发。
+**invalid事件**用户提交表单的验证事件，如果表单元素的值不满足校验条件。则就会触发invalid事件。 
+**reset,submit 事件** 这两个事件都发生在表单对象<form>上，而不是发生在表单成员傻姑娘
+- **`reset`** 事件当表单重置（所有的表单成员都会变成默认值）时触发 
+- **`submit`** 事件当数据向服务器提交时触发 。非常需要注意的时`submit`事件的发生对象时<form>元素，不是<button>
+
+
 
