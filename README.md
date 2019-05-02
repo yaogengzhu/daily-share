@@ -1,13 +1,48 @@
 * [每日分享]()
     * [数组的操作](#1)
-<h2 id="2">第一小题 </h2> 
+    * [浏览器的拖拉事件](#2)
+    * [addEventListener](#3)
+    * [利用Css的伪类来解决一些问题](#4)
+    * [鼠标的11个事件](#5)
+    * [关于JavaScript中两个原生API(contains, compareDocumentPosition)](#6)
+    * [浏览器的进度事件](#7)
+    * [使用document.scrollingElement控制窗体滚动高度](#8)
+    * [表单事件的种类](#9)
+    * [Css中的scroll-behaviour 和js 中的scrollIntoView让页面滚动平滑](#10)
+    * [浏览器的触摸事件](#11)
+<h2 id="2"> 数组的操作 </h2> 
 - //题目描  // 移除数组 arr 中的所有值与 item 相等的元素，直接在给定arr 数组上进行操作，并将结果返回
-<<<<<<< HEAD
-###  浏览器上的拖拉事件
-- 拖拉（drag）指的是，用户在某个对象上按下鼠标键不放，拖动它到另一个位置，然后释放鼠标键，将该对象放在那里。
-=======
 
->>>>>>> 977eeeb6cb0391ba6902e8cdd381fb38f60de159
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //题目描述
+   // 移除数组 arr 中的所有值与 item 相等的元素，直接在给定的 arr 数组上进行操作，并将结果返回
+        function remove(arr , item) {
+            return arr.filter((list) =>{
+                return list !== item
+            })
+        }
+        var arr = [1,2,3,4,5,6,6,6,6,6]
+        var result = remove(arr,6)
+        console.log(result)
+    </script>
+</body>
+</html>
+```
+（本节完！）
+
+<h2 id ="2"> 浏览器上的拖拉事件 </h2>
+### 方法介绍
+- 拖拉（drag）指的是，用户在某个对象上按下鼠标键不放，拖动它到另一个位置，然后释放鼠标键，将该对象放在那里。
 
 拖拉的对象有好几种，包括元素节点、图片、链接、选中的文字等等。在网页中，除了元素节点默认不可以拖拉，其他（图片、链接、选中的文字）都是可以直接拖拉的。为了让元素节点可拖拉，可以将该节点的draggable属性设为true。
 
@@ -20,7 +55,6 @@
 - dragover：拖拉到当前节点上方时，在当前节点上持续触发（相隔几百毫秒），该事件的target属性是当前节点。该事件与dragenter事件的区别是：dragenter事件在进入该节点时触发，然后只要没有离开这个节点，dragover事件会持续触发。
 - dragleave：拖拉操作离开当前节点范围时，在当前节点上触发，该事件的target属性是当前节点。如果要在视觉上显示拖拉离开操作当前节点，就在这个事件的监听函数中设置。
 - drop：被拖拉的节点或选中的文本，释放到目标节点时，在目标节点上触发。注意，如果当前节点不允许drop，即使在该节点上方松开鼠标键，也不会触发该事件。如果用户按下 ESC 键，取消这个操作，也不会触发该事件。该事件的监听函数负责取出拖拉数据，并进行相关处理。
-
 ### 总结 
 - 事件拖拽一共经历了6 个阶段
   -  第一：dragstart ,用户刚拖拽时就立刻在被拖拉的节点上触发
@@ -28,9 +62,10 @@
   -  第三：dragover, 拖拉到目标节点的上方，当前目标节点事件持续触发。
   -  第三：dragenter, 拖拉进入当前目标节点，在当前节点上会触发一次。
   -  第四：dragleave, 拖拉离开当前节点范围时，在当前节点⬆️触发。
-  -  第五：drop, 被拖拉的节点，释放到目标节点时，会触发这个事件。这个节点可以触发添加节点或者删除节点。
+  -  第五：drop, 被拖拉的节点，释放到目标节点时，会触发这个事件。这个节点可以触发添加节点或者删除节点。\
+(本节完！)
 
-  ## EventTarget。addEventListener()
+<h2 id = "3"> **`EventTarget.addEventListener()`** </h2>
   ### `EventTarget.addEventListener()` 用于在当前节点或者对象傻姑娘，定义一个特定的事件的监听函数。一旦这个事情发生之后，就会执行监听函数，该方法是没有返回值的 。
   - `target.addEventListener(type,listener[,userCapture])`
   该方法接收三个参数 。
@@ -52,15 +87,16 @@
     - 这个方法的参数跟绑定的是一摸一样的。
     - **但是值得注意的是，第二个参数必须是要移除绑定的事件监听函数。这两个必须一样才能够实现被移除**
     - 当然参数基本保持一样就不会出现什么问题了。
+(本节完！)
 
-
-## 利用css伪类来解决一些css美化问题；
+<h2 id ="4"> 利用css伪类来解决一些css美化问题； </h2>
 ![](https://github.com/yaogengzhu/life-share/blob/master/images/page1.png?raw=true)
 ### 具体意思
     - 在CSS中，伪类是可以级联使用的，于是，如果列表可以匹配:first-child:nth-last-child(2)则表示当前<li>元素即是第1个子元素，又是从后往前第2个子元素，因此，我们就能判断当前总共两个<li>子元素，我们就能精准实现我们想要的布局了，只需要配合相邻兄弟选择符加号+以及兄弟选择符弯弯~即可 
 **摘自张旭鑫**
+(本节完！)
 
-##  鼠标的11个事件
+<h2 id ="5">  鼠标的11个事件 </h2>
 ### 具体的事件解释如下：
 - click：按下鼠标（通常是按下主按钮）时触发。
 - dblclick：在同一个元素上双击鼠标时触发。
@@ -77,7 +113,6 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -185,9 +220,7 @@
 </body>
 
 </html>
-
 ```
-
 ### 总结 
 - **click** 事件是指的是，用户在同一个位置完成mousedown动作，在完成mouseup动作。因此呢，执行的顺序分别为，mousedown 首先触发 -后续执行mouseup,然后执行click 
 - **dbclick** 事件会在mousedown - mouseup click - 后执行！
@@ -214,13 +247,15 @@
             }
     },false)
 ```
+(本节完！)
 
-## 关于JavaScript中两个原生API的使用介绍 -- 在代码里写的很清楚了 
+<h2 id ="6"> 关于JavaScript中两个原生API(contains, compareDocumentPosition) </h2>
 - 第一个是contains   
 - 第二个是compareDocumentPosition()   ['地址'](https://developer.mozilla.org/zh-CN/docs/Web/API/Node/compareDocumentPosition)
 - 具体API介绍，可以上MDN上。
+(本节完！)
 
-## 浏览器的进度事件
+<h2 id ="7"> 浏览器的进度事件 </h2>
  进度事件用来描述资源加载的进度，主要是由ajax请求。img、audio、video、style、link等外部资源的加载触发。继承了progressEvent接口。主要有以下几个事件
  - abort: 外部资源中止加载时（用户取消）触发。但是如果发生错误导致终止，该事件不会触发 
  - error: 由于错误导致外部资源无法加载时触发。
@@ -229,9 +264,9 @@
  - loadend: 外部资源停止加载时触发，发生顺序排在error、abort、load等事件的后面。
  - progress: 外部资源加载不断的触发 
  - timeout: 加载超时时触发。
+(本节完！)
 
-
- ## 使用document.scrollingElement控制窗体滚动高度  
+<h2 id = "8"> 使用document.scrollingElement控制窗体滚动高度  </h2>
 ### 为何会有document.scrollingElement?  
 如果只是为了获取当前页面的窗体的滚动高度，直接使用window.pageYOffset就可以（IE9+） ,桌面和移动端都是支持的 
 但是windows.pageYOffset是一个只读的属性，我们无法用来设置窗体的滚动高度，此时，就要找到对应的滚动元素，通过设置scrollTop的值来改变窗体的滚动位置。
@@ -244,8 +279,9 @@
 **`document.scrollingElement`** 在桌面端就是documen.documentElement,在移动端就是document.body
 当然也可以直接设置其`scrollTop`的属性值来改变窗体的位置。
 **本文参考张旭鑫---  建议以后使用`document.scrollingElement`来获取窗口的高度**
+(本节完！)
 
-##  表单事件的种类
+<h2 id ="9">表单事件的种类</h2>
 ### input事件 
 input事件当input、 select 、textarea、的值发生变化时就会触发，对于复选框或者单选框，用户改变选项时，也会触发这个事件，另外，对于contentditable属性的元素，只要值发生变化，也会触发input事件。
 **input事件特点** 会连续触发，用户只要每次按键。就会触发一次input事件
@@ -263,42 +299,37 @@ input事件当input、 select 、textarea、的值发生变化时就会触发，
 **reset,submit 事件** 这两个事件都发生在表单对象<form>上，而不是发生在表单成员上。
 - **`reset`** 事件当表单重置（所有的表单成员都会变成默认值）时触发 
 - **`submit`** 事件当数据向服务器提交时触发 。非常需要注意的时`submit`事件的发生对象时<form>元素，不是<button>
+(本节完！)
 
-## css中的scroll-behaviour 和js 中的scrollIntoView让页面滚动平滑
+<h2 id ="10"> css中的scroll-behaviour 和js 中的scrollIntoView让页面滚动平滑 </h2>
 - 在没有这没用这个方式之前，平时测试时使用的css锚点定位可以实现，但是这个种方式会带累这样的缺点
     - 改变location中的hash值来实现会使浏览器触发原生的滚动行为
     - 切换效果十分生硬效果不好。
-
 - 结合input框的onfocus来实现的效果很棒～可以参考 **day6 06---.html**
-
 **记住以后在敲代码过程中** 加上这个代码有意外的效果，返回按钮再也不用做其他更多的操作来。
 ```css
 html, body { scroll-behavior:smooth; }
 ```
 - 注意一定的兼容性～
+(本节完！)
 
-## 浏览器的触摸事件
+<h2 id ="11"> 浏览器的触摸事件 </h2>
 浏览器的触摸事件由三个部分组成，`touch`,`touchuList`,`touchEvet`,这个三个部分分别是代表一个触摸点，多个触摸点的集合，还有触摸引发的事件案例。
-
 - touch的接口实例对象用来表示触摸点（一根手指或者一根触摸笔），包括了位置，大小，形状，压力，目标元素等属性。
 - touchList 表示多个触摸点组成的。
 - touchEvent 的接口实例对象代表由触摸引发的事件，（只有触摸屏才会引发这一个事件）
-
 ### touch 接口
     浏览器原生提供了Touch构造函数，用来生成touch实例。
 `var touch = new Touch(touchOptions);`
 拥有非常多的参数可选，具体可以点击这里 [查看](https://wangdoc.com/javascript/events/touch.html)
-
 ### touchEvent接口
 - `ctrlKey`: 布尔值，表示Ctrl键是否同时按下，默认值为false
 - `shiftKey`: 布尔值，表示Shift值是否同时按下，默认值为false
 - `altKey`: 布尔值，表示Alt键是否同时按下，默认值为false 
 - `metaKey`: 布尔值，表示触摸时，是否按下了Meta键（也就是window）。
-
 ### TouchEvent.changedTouches 
 `TouchEvent.changedToches`属性返回一个TouchList实例，成员是由一组Touch实例对象，表示本次触摸的相关节点 。
 - `touchstart` 事件：被激活的该触摸点 
 - `touchmove` 事件，发生变化的触摸点。
 - `touchend` 事件，消失的触摸点
-
 (本节完)
