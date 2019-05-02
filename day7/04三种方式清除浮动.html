@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* 三种方式清除浮动 */
+        #wrapper {
+            width: 400px;
+            border: 8px solid #ccc;
+            /* overflow */
+            /* overflow: hidden; */
+        }
+        .box1,.box2{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .box1 {
+            float: left;
+        }
+        .box2{
+            float: right;
+        }
+        /* clear方式
+        .clearFix{
+            clear: both;
+        } */
+        /* 伪元素方式 */
+        .clearFix{
+            /* ie6的兼容代码 */
+            zoom: 1;
+        }
+        .clearFix::after{
+            clear: both;
+            content: "";
+            display: block;
+            /* height */
+            height: 0;
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper" class="clearFix">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <!-- <div class="clearFix"></div> -->
+    </div>
+</body>
+
+</html>
