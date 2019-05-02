@@ -277,3 +277,27 @@ input事件当input、 select 、textarea、的值发生变化时就会触发，
 html, body { scroll-behavior:smooth; }
 ```
 - 注意一定的兼容性～
+
+## 浏览器的触摸事件
+浏览器的触摸事件由三个部分组成，`touch`,`touchuList`,`touchEvet`,这个三个部分分别是代表一个触摸点，多个触摸点的集合，还有触摸引发的事件案例。
+
+- touch的接口实例对象用来表示触摸点（一根手指或者一根触摸笔），包括了位置，大小，形状，压力，目标元素等属性。
+- touchList 表示多个触摸点组成的。
+- touchEvent 的接口实例对象代表由触摸引发的事件，（只有触摸屏才会引发这一个事件）
+
+### touch 接口
+    浏览器原生提供了Touch构造函数，用来生成touch实例。
+`var touch = new Touch(touchOptions);`
+拥有非常多的参数可选，具体可以点击这里 [查看](https://wangdoc.com/javascript/events/touch.html)
+
+### touchEvent接口
+- `ctrlKey`: 布尔值，表示Ctrl键是否同时按下，默认值为false
+- `shiftKey`: 布尔值，表示Shift值是否同时按下，默认值为false
+- `altKey`: 布尔值，表示Alt键是否同时按下，默认值为false 
+- `metaKey`: 布尔值，表示触摸时，是否按下了Meta键（也就是window）。
+
+### TouchEvent.changedTouches 
+`TouchEvent.changedToches`属性返回一个TouchList实例，成员是由一组Touch实例对象，表示本次触摸的相关节点 。
+- `touchstart` 事件：被激活的该触摸点 
+- `touchmove` 事件，发生变化的触摸点。
+- `touchend` 事件，消失的触摸点
