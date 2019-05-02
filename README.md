@@ -285,6 +285,7 @@
 ### input事件 
 input事件当input、 select 、textarea、的值发生变化时就会触发，对于复选框或者单选框，用户改变选项时，也会触发这个事件，另外，对于contentditable属性的元素，只要值发生变化，也会触发input事件。
 **input事件特点** 会连续触发，用户只要每次按键。就会触发一次input事件
+
 ```js
   <script>
         input.addEventListener('input',(e) =>{
@@ -307,6 +308,7 @@ input事件当input、 select 、textarea、的值发生变化时就会触发，
     - 切换效果十分生硬效果不好。
 - 结合input框的onfocus来实现的效果很棒～可以参考 **day6 06---.html**
 **记住以后在敲代码过程中** 加上这个代码有意外的效果，返回按钮再也不用做其他更多的操作来。
+
 ```css
 html, body { scroll-behavior:smooth; }
 ```
@@ -314,7 +316,8 @@ html, body { scroll-behavior:smooth; }
 (本节完！)
 
 <h2 id ="11"> 浏览器的触摸事件 </h2>
-浏览器的触摸事件由三个部分组成，`touch`,`touchuList`,`touchEvet`,这个三个部分分别是代表一个触摸点，多个触摸点的集合，还有触摸引发的事件案例。
+## 浏览器的触摸事件组成
+- 浏览器的触摸事件由三个部分组成，`touch`,`touchuList`,`touchEvet`,这个三个部分分别是代表一个触摸点，多个触摸点的集合，还有触摸引发的事件案例。
 - touch的接口实例对象用来表示触摸点（一根手指或者一根触摸笔），包括了位置，大小，形状，压力，目标元素等属性。
 - touchList 表示多个触摸点组成的。
 - touchEvent 的接口实例对象代表由触摸引发的事件，（只有触摸屏才会引发这一个事件）
