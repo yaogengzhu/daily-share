@@ -268,8 +268,8 @@
 
 <h2 id = "8"> 使用document.scrollingElement控制窗体滚动高度  </h2>
 ### 为何会有document.scrollingElement?  
-如果只是为了获取当前页面的窗体的滚动高度，直接使用window.pageYOffset就可以（IE9+） ,桌面和移动端都是支持的 
-但是windows.pageYOffset是一个只读的属性，我们无法用来设置窗体的滚动高度，此时，就要找到对应的滚动元素，通过设置scrollTop的值来改变窗体的滚动位置。
+- 如果只是为了获取当前页面的窗体的滚动高度，直接使用window.pageYOffset就可以（IE9+） ,桌面和移动端都是支持的 
+- 但是windows.pageYOffset是一个只读的属性，我们无法用来设置窗体的滚动高度，此时，就要找到对应的滚动元素，通过设置scrollTop的值来改变窗体的滚动位置。
 **注意** 对于桌面端和手机端窗口的滚动元素都是不一样的
 - `document.documentElement.scrollTop` 是可以获取pc端窗口的滚动大小。
 - `document.body.scrollTop` 是可以用来获取手机端滚动窗体的大小。
@@ -316,6 +316,7 @@ html, body { scroll-behavior:smooth; }
 (本节完！)
 
 <h2 id="11"> 浏览器的触摸事件 </h2>
+
 ### 浏览器的触摸事件组成
 - 浏览器的触摸事件由三个部分组成，`touch`,`touchuList`,`touchEvet`,这个三个部分分别是代表一个触摸点，多个触摸点的集合，还有触摸引发的事件案例。
 - touch的接口实例对象用来表示触摸点（一根手指或者一根触摸笔），包括了位置，大小，形状，压力，目标元素等属性。
