@@ -341,7 +341,9 @@ html, body { scroll-behavior:smooth; }
 (本节完)
 
 <h2 id="12">浏览器的异步操作</h2>
+
 ### 单线程模型
+
 单线程模型指的是，JavaScript 只在一个线程上执行，也就是说，JavaScript同时只能执行一个任务，其他任务都必须都在后面排队等待。
 
 但是值得注意的是，JavaScript只在一个线程上运行，不代表JavaScript引擎只有一个线程。事实上，JavaScript引擎有多个线程，单个脚本只能在一个线程傻姑娘运行（称为主线程），其他线程都是在后台配合。
