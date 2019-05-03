@@ -96,8 +96,9 @@
     - 当然参数基本保持一样就不会出现什么问题了。
 (本节完！)
 
-<h2 id ="4"> 利用css伪类来解决一些css美化问题； </h2>
-![](https://github.com/yaogengzhu/life-share/blob/master/images/page1.png?raw=true)
+<h2 id ="4"> 利用css伪类来解决一些css美化问题</h2>
+
+![图例](https://github.com/yaogengzhu/life-share/blob/master/images/page1.png?raw=true)
 
 ### 具体意思
 
