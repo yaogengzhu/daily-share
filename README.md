@@ -284,6 +284,7 @@
 (本节完！)
 
 <h2 id = "8"> 使用document.scrollingElement控制窗体滚动高度 </h2>
+
 ### 为何会有document.scrollingElement?  
 - 如果只是为了获取当前页面的窗体的滚动高度，直接使用window.pageYOffset就可以（IE9+） ,桌面和移动端都是支持的 
 - 但是windows.pageYOffset是一个只读的属性，我们无法用来设置窗体的滚动高度，此时，就要找到对应的滚动元素，通过设置scrollTop的值来改变窗体的滚动位置。
