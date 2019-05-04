@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            height: 3000px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('scroll',throttle(function(e){
+            // 判断浏览器是否滚动到地步的逻辑
+            // console.log(e.target.body.offsetHeight)
+            let pageHeight = e.target.body.offsetHeight;
+            // body 总高度3000
+            let scrollTop = document.scrollingElement.scrollTop;
+            // 滚动高度。 变量
+            console.log(scrollTop);
+            let winHeight = window.innerHeight;
+            // 获取浏览器窗口的高度 
+            // 浏览器窗口高度821
+            // console.log(window.innerHeight);
+            //定义一个阀值
+            let thresold = pageHeight - scrollTop - winHeight;
+            // 进行判断 
+            if (thresold > -100 && thresold <= 20) {
+                console.log('到底了');
+            }
+        }))    
+
+        function throttle(fn, interval = 500){
+            // 设置节流阀
+            let canRun  = true;
+            return function () {
+                // 判断这个节流阀是否为true 。
+                if (!canRun) return ;
+                // 如果为true，进来之后，设置为false
+                canRun = false;
+                // 设置一个300毫秒的定时器
+                setTimeout(() => {
+                    // 改变this指向
+                    fn.apply(this,arguments);
+                    // 在执行之后，在将节流阀值设置为true 
+                    canRun =true;
+                }, interval);
+            }
+        }
+    </script>
+</body>
+</html>

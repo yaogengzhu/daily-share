@@ -12,6 +12,7 @@
     * [浏览器的触摸事件](#11)
     * [浏览器的异步操作](#12)
     * [局部作用域和函数提升](#13)
+    * [函数节流](#14)
 
 <h2 id="2"> 数组的操作 </h2> 
 
@@ -450,11 +451,66 @@ A(3); // ok 7
 - 函数被覆盖成为全局函数
 **分析** 只有当A(1) 被执行时，才会将A 中的函数重新赋值，变成全局函数，所以在第二次调用的时候，直接覆盖掉了之前的函数。
 
+<h2 id="14">函数节流</h2>
 
+### 认识函数节流
+- 函数节流：指定时间间隔只会执行一次任务。（只介绍函数节流）
+- 函数防抖：任务频繁的情况下，只有任务触发时间超过指定间隔的时候，任务才会执行。
 
+### 函数节流（throttle)
+通过监听`window`对象的`scroll`事件来分析这个问题，然后在函数体内中写入判断是否滚动底部的逻辑；
+```js 
+// 这里写原生js    html，bdoy的高度设置为3000
+ document.addEventListener('scroll',function(e){
+            // 判断浏览器是否滚动到地步的逻辑
+            // console.log(e.target.body.offsetHeight)
+            let pageHeight = e.target.body.offsetHeight;
+            // body 总高度3000
+            let scrollTop = document.scrollingElement.scrollTop;
+            // 滚动高度。 变量
+            console.log(scrollTop);
+            let winHeight = window.innerHeight;
+            // 获取浏览器窗口的高度 
+            // 浏览器窗口高度821
+            console.log(window.innerHeight);
+            //定义一个阀值
+            let thresold = pageHeight - scrollTop - winHeight;
+            // 进行判断 
+            if (thresold > -100 && thresold <= 20) {
+                console.log('到底了');
+            }
+        })    
+``` 
+**可以自行测试这行代码** 
+会发现一个问题， 这个代码在监听`scroll`事件的时候，会不停的触发我们设置的阀值计算。不停的进行判断是否到底，这样做，极大的消耗了浏览器的性能，而且在实际的开发场景中，不需要这么去做。实际开发过程中，每隔一段时间去判断这个逻辑效果比较好。所以***函数节流**所可以做的就每隔一段时间去执行一次原本需要无时无刻都需要在执行的函数。这个就是`函数节流`的最大用处。
 
+```js
+// 这个定义的函数需要在上面的那个函数中去被调用
+       function throttle(fn, interval = 500){
+            // 设置节流阀
+            let canRun  = true;
+            return function () {
+                // 判断这个节流阀是否为true 。
+                if (!canRun) return ;
+                // 如果为true，进来之后，设置为false
+                canRun = false;
+                // 设置一个300毫秒的定时器
+                setTimeout(() => {
+                    // 改变this指向
+                    fn.apply(this,arguments);
+                    // 在执行之后，在将节流阀值设置为true 
+                    canRun =true;
+                }, interval);
+            }
+        }
+```
+####  **解析**
+加上函数节流之后，当页面滚动的时候，每隔500ms才会去执行逻辑判断。
+简单的来说，函数的节流就是通过一个闭包来保存一个标记，在函数的开头判断这个标记是否为true，如果为true的话就继续执行函数，否则就return掉，判断完标记后又立即把这个标记设置为false，然后在把外部传入的函数在一个定时器中去执行，在执行完毕之后，在把这个节流阀的值设置为true。表示可以执行下一次的循环，当定时器还没执行的时候，节流阀的值始终是false，就不会执行我们的判断函数。直接被return掉了。
 
+[点我了解更多，原文出处，尊重原创](https://juejin.im/entry/58c0379e44d9040068dc952f)
 
+（本小节完！）
 
 
 
