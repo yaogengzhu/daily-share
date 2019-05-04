@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var a = 0;
+        b = 0;
+
+        function A(a) {
+            // var  a = 1;
+
+             A = function (b) {
+                //  b = 2 
+                // b = ++b // 3 
+                // b = 3
+                console.log("ok")
+                console.log((b + ++b));
+            }
+            console.log((a++), 'ok');
+        }
+        // console.log(A(1)); 
+        // console.lof(A(2));
+        A(1);  // 1 'ok'
+        A(2);  // ok 5
+        A(3); // ok 7    
+    </script>
+</body>
+
+</html>
