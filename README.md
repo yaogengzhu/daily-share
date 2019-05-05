@@ -660,7 +660,72 @@ let input = document.getElementById('text');
 #### 看图演示
 
 ![demo](https://github.com/yaogengzhu/life-share/blob/master/images/doudong1.gif?raw=true)
+如果是该种方式，极大的消耗了浏览器的运行性能，对用户计算机来说是个考验，这个就是所谓的抖动问题。那么问题既然出现。解决方案如下；
 
+```js
+let input = document.getElementById('text');
+    let span = document.getElementById('span');
+    input.addEventListener('input', delay(function () {
+        // 动态获取输入框的值 
+        let text = this.value;
+        console.log(text);
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', './test.json');
+        xhr.send(null);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                // console.log(xhr.responseText)
+                var data = xhr.responseText;
+                // 将字符串变成数组
+                var arr = JSON.parse(data);
+                for (var i = 0; i < arr.length; i++) {
+                    // console.log(arr[i].name)
+                    // console.log('----')
+                    if (text != arr[i].name) {
+                        // 用户名不存在可以注册
+                        span.innerText = '恭喜！该用户名可以注册';
+                        span.style.color = 'green';
+                        span.style.fontSize = '10px';
+                    } else {
+                        span.innerText = '用户名已存在！';
+                        span.style.color = 'red';
+                        span.style.fontSize = '10px';
+                    }
+                }
+                if (!text.length) {
+                    span.innerText = '';
+                }
+            }
+        }
+    }))
+
+    // 介于bug
+    function delay(fn , interval = 500) {
+        // 定义一个定时器
+        let tiemout = null;
+        return function(){
+            // 清空定时器
+            clearInterval(tiemout);
+            // 设置定时器
+            tiemout = setTimeout(() => {
+                fn.apply(this);
+            }, interval);
+        }
+    }
+```
+以上代码尽量用到了原生的js. 当然使用 `jquery`可能就几行代码。都可以尝试哦～
+
+#### 解决之后的演示图 
+![demo](https://github.com/yaogengzhu/life-share/blob/master/images/doudong2.gif?raw=true)
+
+#### 总结
+函数防抖的原理跟函数节流类似。通过`闭包`来保存了一个`setTimeout`的返回值，每当用户输入的时候，把前面的`setTimeOut`清理掉。然后又重新的创建一个新的`setTimeout`，这样能保证输入字符后定时器的间隔时间内还有字符输入的化，就不会执行fn函数。
+
+函数节流和函数防抖都是巧妙的利用了setTimeout来存放将要执行的函数，这样可以很方便的利用清楚定时器在合适的时机来清除执行的函数。
+
+**不管使用何种方式，何种目的，最终都是为了解决性能问题**
+
+（本节完！）
 
 
 
