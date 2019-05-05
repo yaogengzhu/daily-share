@@ -49,7 +49,19 @@
         }
     })
 
-    // 写一个ajax  
+    // 介于bug
+    function delay(fn , interval = 300) {
+        // 定义一个定时器
+        let tiemout = null;
+        return function(){
+            // 清空定时器
+            clearInterval(tiemout);
+            // 设置定时器
+            tiemout = setTimeout(() => {
+                fn.apply(this,arguments);
+            }, interval);
+        }
+    }
 
 </script>
 
