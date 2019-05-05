@@ -527,7 +527,7 @@ function full(firstName, lastName){
     console.log(this);
 }
 // 注意这里的参数是一个数组
-full.apply(obj,['zhu','yaogeng']);
+full.apply(obj,['zhu','yaogeng']); // firstName zhu zhuyaogeng lastName yaogeng
 
 //使用call方式 
 var obj1 = {
@@ -539,11 +539,39 @@ var getInfo = function(A,B){
     console.log(this);
 }
 // 注意这里的参数是一个个的对象
-getInfo.call(obj1,'good','boy');
+getInfo.call(obj1,'good','boy');  // this is a good boy ,he age is 19
 ```
 **总结** 
 - 两种方式都是传递的两个参数，一个是作为函数上下文的对象，一个是作为函数参数所组成的数组，或者是参数列表。
 - 两者用法一样，只是参数不一样。
+
+### apply和call用法 
+#### 用法1 改变this指向
+```js
+var obj3 = {
+    name:'zhuyaogeng'
+}
+function full1(){
+    this.age = 20;
+    console.log(this);
+    console.log(this.name);
+    // 调用之后相当于
+    // console.log(obj3.name);
+}
+full1.call(obj3); //zhuyaogeng
+```
+同理 `apply` 用法一致
+```js
+var obj4 = {
+    age:22
+}
+function full2(){
+    console.log(this.age);
+}
+full2.apply(obj4);
+``` 
+#### 总结 
+call和appl方式的第一参数所作为函数上下文的对象，这里把obj3作为参数传递给函数。传递之后，函数的this指向就变成了obj3的对象。
 
 
 

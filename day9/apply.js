@@ -37,7 +37,7 @@ var obj3 = {
 }
 function full1(){
     this.age = 20;
-    console.log(this);
+    // console.log(this.age);
     console.log(this.name);
 }
 full1.call(obj3);
@@ -48,7 +48,7 @@ var obj4 = {
 function full2(){
     console.log(this.age);
 }
-full2.call(obj4);
+full2.apply(obj4);
 /**
  * call 方法的第一个参数是作为函数上下文的对象，这里把obj3作为参数传递给full1，此时
  * 函数里的this便指向了obj3对象，此时函数fun1函数相当于
