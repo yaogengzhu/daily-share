@@ -41,6 +41,14 @@ function full1(){
     console.log(this.name);
 }
 full1.call(obj3);
+console.log('=========apply改变this指向=======');
+var obj4 = {
+    age:22
+}
+function full2(){
+    console.log(this.age);
+}
+full2.call(obj4);
 /**
  * call 方法的第一个参数是作为函数上下文的对象，这里把obj3作为参数传递给full1，此时
  * 函数里的this便指向了obj3对象，此时函数fun1函数相当于

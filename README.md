@@ -516,6 +516,35 @@ A(3); // ok 7
 <h2 id="15">js中的apply和call的区别和用法</h2>
 
 *之所以插入这个小节，是对函数节流中使用了apply方法的一个补充知识*
+### 首先了解apply和call两者的区别
+```js
+// 使用apply方式
+var obj = {
+    name:"zhuyaogeng"
+}
+function full(firstName, lastName){
+    console.log(firstName+'==='+'' + this.name + '' +'==='+ lastName);
+    console.log(this);
+}
+// 注意这里的参数是一个数组
+full.apply(obj,['zhu','yaogeng']);
+
+//使用call方式 
+var obj1 = {
+    age:19
+}
+var getInfo = function(A,B){
+    this.name = 'zhuyaogeng';
+    console.log('this is a '+ A +' '+ B ,',he age is ' + this.age );
+    console.log(this);
+}
+// 注意这里的参数是一个个的对象
+getInfo.call(obj1,'good','boy');
+```
+**总结** 
+- 两种方式都是传递的两个参数，一个是作为函数上下文的对象，一个是作为函数参数所组成的数组，或者是参数列表。
+- 两者用法一样，只是参数不一样。
+
 
 
 
