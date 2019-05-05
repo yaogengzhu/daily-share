@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="text"> <span id="span"></span>
+
+</body>
+<script>
+    let input = document.getElementById('text');
+    let span = document.getElementById('span');
+    input.addEventListener('input', function () {
+        // 动态获取输入框的值 
+        let text = this.value;
+        console.log(text);
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', './test.json');
+        xhr.send(null);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                // console.log(xhr.responseText)
+                var data = xhr.responseText;
+                // 将字符串变成数组
+                var arr = JSON.parse(data);
+                for (var i = 0; i < arr.length; i++) {
+                    // console.log(arr[i].name)
+                    // console.log('----')
+                    if (text != arr[i].name) {
+                        // 用户名不存在可以注册
+                        span.innerText = '恭喜！该用户名可以注册';
+                        span.style.color = 'green';
+                        span.style.fontSize = '10px';
+                    } else {
+                        span.innerText = '用户名已存在！';
+                        span.style.color = 'red';
+                        span.style.fontSize = '10px';
+                    }
+                }
+                if (!text.length) {
+                    span.innerText = '';
+                }
+            }
+        }
+    })
+
+    // 写一个ajax  
+
+</script>
+
+</html>
