@@ -619,8 +619,47 @@ foo.call(); // hello world
 
 ### 什么是函数防抖？哪些地方可以用到？
 以用户注册时验证为例，验证用户名是否被注册，很多网站为了提高用户体验，不会让输入框失去焦点时在去判断这个用户是否被占用，而是在输入的时候就判断这个用户名是否已经存在。
+```js
+// 抖动存在的demo 
+let input = document.getElementById('text');
+    let span = document.getElementById('span');
+    input.addEventListener('input', function () {
+        // 动态获取输入框的值 
+        let text = this.value;
+        console.log(text);
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', './test.json');
+        xhr.send(null);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                // console.log(xhr.responseText)
+                var data = xhr.responseText;
+                // 将字符串变成数组
+                var arr = JSON.parse(data);
+                for (var i = 0; i < arr.length; i++) {
+                    // console.log(arr[i].name)
+                    // console.log('----')
+                    if (text != arr[i].name) {
+                        // 用户名不存在可以注册
+                        span.innerText = '恭喜！该用户名可以注册';
+                        span.style.color = 'green';
+                        span.style.fontSize = '10px';
+                    } else {
+                        span.innerText = '用户名已存在！';
+                        span.style.color = 'red';
+                        span.style.fontSize = '10px';
+                    }
+                }
+                if (!text.length) {
+                    span.innerText = '';
+                }
+            }
+        }
+    })
+```
+#### 看图演示
 
-
+![demo](https://github.com/yaogengzhu/life-share/blob/master/images/doudong1.gif?raw=true)
 
 
 
