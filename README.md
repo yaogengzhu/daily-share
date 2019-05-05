@@ -573,7 +573,46 @@ full2.apply(obj4);
 #### 总结 
 call和appl方式的第一参数所作为函数上下文的对象，这里把obj3作为参数传递给函数。传递之后，函数的this指向就变成了obj3的对象。
 
+#### 用法2 借用别的对象的方法
+```js
+var Person1 = function (){
+    this.name = 'zhuyaogeng';
+}
+var Person2 = function (){
+    this.getName = function(){
+        console.log(this);
+        console.log(this.name);
+    }
+    //借用了Person1中的属性 
+    Person1.call(this);
+    // console.log(this);
+}
+var person = new Person2();
+person.getName();
+/**
+ * Person2实例化出来的对象通过getName方法拿到了Person1中的name..因为
+ * 在Person2中，Person。call(this)的作用就是使用了Person1代替了this对象
+ * 那么Person2就用了Person1中的属性和方法了，相当于Person2继承了Person1
+ * 的属性和方法 。
+ */
+```
+#### 方式3 调用函数 
+```js
+function foo(){
+    console.log('hello world');
+}
+//调用函数 
+foo.call(); // hello world
+```
 
+#### 总结： apply 和 call 方法的作用有三种
+- 改变this指向问题 
+- 调用别的对象的方法 
+- 调用函数 
+
+[参考文章：来源点击这里，尊重原创！](https://github.com/lin-xin/blog/issues/7)
+
+(本小节完！)
 
 
 

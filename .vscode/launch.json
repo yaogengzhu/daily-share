@@ -6,12 +6,13 @@
     "configurations": [
 
 
+
         
         {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/day9/借用别对象的方式.js"
+            "program": "${workspaceFolder}/day9/调用函数.js"
         }
     ]
 }

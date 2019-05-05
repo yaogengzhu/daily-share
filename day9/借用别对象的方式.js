@@ -4,11 +4,12 @@ var Person1 = function (){
 }
 var Person2 = function (){
     this.getName = function(){
+        console.log(this);
         console.log(this.name);
     }
     //借用了Person1中的属性 
     Person1.call(this);
-    console.log(this);
+    // console.log(this);
 }
 var person = new Person2();
 person.getName();
