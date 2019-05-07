@@ -733,6 +733,7 @@ let input = document.getElementById('text');
 
 ### `setTimeout()`
 `setTimeout()` 函数用来指定某个函数或某段代码，在多少毫米之后执行。它返回的是一个整数，表示定时器的编号，以后可以用这个定时器的编号来取消这个定时器。
+
 *可以参考day10文件夹代码*
 - `setTimeout()` 传递两个参数，第一个参数是`一段代码`或者是`函数`。
 - 第二个参数是`delay` 也就是延迟的毫秒数。
@@ -758,6 +759,23 @@ let timerId = setTimeout(obj.seyHello,1000); //undefined
 原因是，`obj.sayHello` 在一段时间延时后，`this`的指向已经不是obj，而是全局环境。
 当然为了防止这个发生。第一种解决方案是将`obj.sayHello`放入一个函数中。
 ```js 
+timerId = setTimeout(function(){
+    obj.sayHello();
+},1000)   
+// 当然执行的结果又是  1 
+```
+这样做的好处是，使得obj.sayHello在obj的作用域内执行，而不是在全局作用域内执行，所以能显示正确的值。
+- 解决的方式2 
+```js 
+timerId = setTimeout(obj.sayHello.bind(obj),1000);
+``` 
+将obj.sayHello绑定到obj上面也是可以的哦
+
+#### 总结 
+`setTimeout` 是一次性定时器，返回值是个整数的ID  [更多参考，点我查看阮一峰内容](https://wangdoc.com/javascript/async/timer.html)
+
+(本节未完，待续～)
+
 
 
 

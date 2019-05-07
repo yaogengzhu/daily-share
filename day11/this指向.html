@@ -20,6 +20,8 @@
         timerId = setTimeout(() => {
             obj.sayHello();
         }, 1000);
+        // 方式2 
+        timerId = setTimeout(obj.sayHello.bind(obj), 1000);
     </script>
 </body>
 </html>
