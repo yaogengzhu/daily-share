@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<div id="dv">
+
+</div>
+
+<body>
+    <script>
+        let str = '';
+        let dv = document.getElementById('dv');
+        let count = 0;
+        // 一次性定时器
+        // 用完time记得注释掉，避免后面的setInterval()出问题
+        let time = new Date().getSeconds();
+        let timerId = setTimeout(() => {
+            count++;
+            str += time;
+            dv.innerHTML = str;
+            // console.log(count);
+        }, 1000);
+        // test 代码
+        // timerId = setTimeout(() => {
+        //     count++;
+        //     str += time;
+        //     dv.innerHTML = str;
+        //     // console.log(count);
+        // }, 1000);
+        // timerId = setTimeout(() => {
+        //     count++;
+        //     str += time;
+        //     dv.innerHTML = str;
+        //     // console.log(count);
+        // }, 1000);
+      
+        // 查看定时器返回的是什么？
+        console.log(timerId);
+        // 无限循环定时器
+        // setInterval(() => {
+        //     let time = new Date().getSeconds();
+        //     count++;
+        //     str += '<br/>' + time;
+        //     dv.innerHTML = str;
+        //     console.log(count);
+        // }, 1000)
+    </script>
+</body>
+
+</html>

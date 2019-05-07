@@ -15,6 +15,8 @@
     * [函数节流](#14)
     * [js中的apply，call区别和用法](#15)
     * [函数防抖](#16)
+    * [js中的定时器](#17)
+    
 
 <h2 id="2"> 数组的操作 </h2> 
 
@@ -727,8 +729,35 @@ let input = document.getElementById('text');
 
 （本节完！）
 
+<h2 id="17">js中的定时器</h2> 
 
-
+### `setTimeout()`
+`setTimeout()` 函数用来指定某个函数或某段代码，在多少毫米之后执行。它返回的是一个整数，表示定时器的编号，以后可以用这个定时器的编号来取消这个定时器。
+*可以参考day10文件夹代码*
+- `setTimeout()` 传递两个参数，第一个参数是`一段代码`或者是`函数`。
+- 第二个参数是`delay` 也就是延迟的毫秒数。
+- 第二个参数可以省略，但是如果省略，则默认为0。
+- 值得注意的是，`setTimeout`还可以传递多个参数 ，如：
+```js
+let timerId = setTimeout(function(a, b) {
+    console.log(a + b);
+},1000, 1, 1);
+```
+- 以上代码，传递了四个参数，前面两个参数已经介绍，那么第三个和第四个参数是代表着，将在1000毫秒之后返回回调函数执行时，作为回调函数的参数传入。
+- 值得注意的是，如果回调函数是对象的方法，那么在定时器使得方法内部的`this`关键字指向全局环境，而不是定义时所在的那个对象。看下面的代码---
+```js
+var obj = {
+    a:1,
+    sayHello:function(){
+        console.log(this.a);
+    }
+}
+obj.sayHello(); // 1
+let timerId = setTimeout(obj.seyHello,1000); //undefined 
+``` 
+原因是，`obj.sayHello` 在一段时间延时后，`this`的指向已经不是obj，而是全局环境。
+当然为了防止这个发生。第一种解决方案是将`obj.sayHello`放入一个函数中。
+```js 
 
 
 
