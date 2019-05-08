@@ -784,6 +784,8 @@ timerId = setTimeout(obj.sayHello.bind(obj),1000);
 
 [更多内容，访问wangdoc.com](https://wangdoc.com/javascript/async/timer.html)
 
+(本节完！)
+
 
 
 
