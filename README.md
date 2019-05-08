@@ -776,6 +776,13 @@ timerId = setTimeout(obj.sayHello.bind(obj),1000);
 
 (本节未完，待续～)
 
+### `setInterval()` 用法跟`setTimeout()` 用法一致 
+   两者唯一的区别是，`setInterval()`无限次执行，而`setTimeout()`是指定某任务每隔一段时间也就执行一次。
+
+### `clearTimeout()`,`clearInterval()` 的用法
+`setTimeout()` 和 `setInterval()`函数，都返回一个整数值，表示计算器编号。将该整数传入`clearTimeout()`和 `clearInterval()`函数，就可以取消对应的定时器。
+
+[更多内容，访问wangdoc.com](https://wangdoc.com/javascript/async/timer.html)
 
 
 
