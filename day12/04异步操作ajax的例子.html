@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 异步操作ajax  
+    const getJson = function (url) {
+      const p = new Promise(function (resolve, reject) {
+        // 处理函数 
+        const hander = function () {
+          if (this.readyState !== 4) {
+            return;
+          }
+          if (this.status === 200) {
+            resolve(this.response);
+          } else {
+            reject(new Error(this.statusText));
+          }
+        };
+        const xhr = new XMLHttpRequest();
+        xhr.open('get', url);
+        xhr.send(null);
+        xhr.onreadystatechange = hander;
+        // 设置响应类型 
+        xhr.responseType = 'json';
+      });
+      return p;
+    }
+    getJson('./data.json').then(function (data) {
+      console.log(data);
+    }, function (err) {
+      console.log(err);
+    })
+
+  </script>
+</body>
+
+</html>

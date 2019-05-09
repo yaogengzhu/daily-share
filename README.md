@@ -799,6 +799,70 @@ timerId = setTimeout(obj.sayHello.bind(obj),1000);
 - 对象的状态不受外界影响。`Promise`对象代表的一个异步操作，有三种状态：`pending(进行中)`、`fulfilled(已成功)`，`rejected(已失败)`。只有异步操作的结果，可以决定当前是哪一种状态。任何其他操作都无法改变这个状态。这也是`Promise`这个名字的由来，英文意思为`承诺，信守诺言`。表示其他手段无法改变。
 - 一旦状态改变，就不会在变。任何时候都可以得到这个结果。`Promise`对象的状态改变。只有两种可能：从`pending`到`fulfilled`,和从`pending`到`rejected`。只要这两种状况发生。状态就凝固了，不会在改变，会一直保持这个结果。这时就称为`resolved(已定型)`。如果改变已经发生，再次对`Promise`对象添加回调函数，也会立即得到到这个结果。这个于事件（Event）完全不同，事件的特点是，如果一🥚错过，在去监听，是得不到结果的。（失去了，就失去了，记住承诺`Promise`）。
 
+但是`Promise`有一定的缺点：1.无法取消`Promise`，一🥚新建它就会立即执行，无法中途取消。2.如果不设置回调函数，`Promise`内部抛出异常，外部不会收到反馈。3.当`pending`状态时，无法得知目前进展到那个状态（是刚开始，还是即将完成。）
 
+### 基本用法 
 
+```js 
+  const promise = new Promise(function (resolve, reject) {
+            // let a = '';
+            // code 
+            if ('') {
+                //  异步操作成功
+                resolve(a);
+            } else {
+                reject(err);
+            }
+        })
+``` 
+`Promise`构造函数接受一个函数作为参数，该函数的两个参数分别是`resolve`和`reject`。它们是两个函数，是js原生提供的。不用自己去部署/..
 
+`resolve`函数的作用是。将`Promise`对象的状态从`未完成`变成`成功`。在异步成功调用，并将异步的结果，作为参数传递出去 。
+
+`reject`函数的作用，是将`Promise`对象从`未完成`变为`失败`，在异步操作失败时。将异步操作报错的错误，作为参数传递出去。
+
+`Promise`实例生成之后，可以用`then`方式分别指定`resolved`状态和`rejected`状态的回调函数。
+```js 
+promise.then(function(value){
+    // 成功结果
+},function(error){
+    // 失败结果
+})
+```
+当然错误的函数是`可选`的
+
+### 具体实例
+```js
+// 异步操作ajax  
+    const getJson = function (url) {
+      const p = new Promise(function (resolve, reject) {
+        // 处理函数 
+        const hander = function () {
+          if (this.readyState !== 4) {
+            return;
+          }
+          if (this.status === 200) {
+            return resolve(this.response);
+          } else {
+            reject(new Error(this.statusText));
+          }
+        };
+        const xhr = new XMLHttpRequest();
+        xhr.open('get', url);
+        xhr.send(null);
+        xhr.onreadystatechange = hander;
+        // 设置响应类型 
+        xhr.responseType = 'json';
+      });
+      return p;
+    }
+    getJson('./data.json').then(function (data) {
+      console.log(data);
+    }, function (err) {
+      console.log(err);
+    })
+``` 
+### 小节 
+一般来说，调用`reslove` 和 `reject`以后。`Promise`的使命已经完成。后续操作都会在`then`方法去里面。而不应该直接写在`resolve`或者`reject`的后面。所以，最好是给他们`retun` 出去。避免意外情况。
+
+（本小节完～）
