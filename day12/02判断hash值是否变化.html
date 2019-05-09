@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let hash = window.location.hash;
+        // 设置定时器 
+        let timerId = setInterval(() => {
+            // 判断当前hash 值是否发生变化，若放生变化，则需要刷新
+            if (window.location.hash !== hash) {
+                window.updatePage();
+            }
+        }, 500);
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="dv"></div>
+    <script>
+        var dv = document.getElementById('dv');
+        // 设置定时器
+        let opacity = 1; 
+        var timerId = setInterval(function(){
+            // 设置透明度 
+            dv.style.opacity = opacity;
+            // 根据条件判断透明度 
+            if (opacity >=0 ){
+                // 如果大于0 让opacity -- ；
+                opacity -= 0.1;
+            } else {
+                // 否则清空定时器 
+                clearInterval(timerId);
+            }
+        },500)
+    </script>
+</body>
+</html>
