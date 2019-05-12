@@ -17,6 +17,7 @@
     * [函数防抖](#16)
     * [js中的定时器](#17)
     * [Promise对象](#18)
+    * [vue中如何keep-alive进行组件缓存](#19)
 
     
 
@@ -866,3 +867,122 @@ promise.then(function(value){
 一般来说，调用`reslove` 和 `reject`以后。`Promise`的使命已经完成。后续操作都会在`then`方法去里面。而不应该直接写在`resolve`或者`reject`的后面。所以，最好是给他们`retun` 出去。避免意外情况。
 
 （本小节完～）
+
+<h2 id="19">vue是如何利用keep-alive进行组件缓存</h2>
+
+### 页面缓存 
+在vue中构建单个页面，路由模块一般都是使用`vue-router`,`vue-router`不会自动的保存被切换的组件状态，当组件进行`push`或者`replace`时。旧组件会被销毁，而新的组件会被创建，这也就是会体现出`vue的生命周期`。
+
+**需求** 当跳转到详情页时，需要保持列表页的滚动条的深度，等返回时，依旧保持这个高度，极大的提高了用户体验度。这个时候，`keep-alive`组件的作用应运而生。
+
+### 使用方式  
+
+```html
+<keep-alive>
+    <router-view></router-view>
+<keep-alvie>
+```
+值得注意的时`keep-alive`只是一个抽象组件，实际上是不会被渲染在dom树上的，它的作用是在内存中缓存组件（不让组件进行销毁），等到下次渲染的时候，还会保持其中的所有状态。并且会触发`activeted`的钩子函数，因为缓存的一般都是出现在页面被切换的时候，故一般都是和`rouer-view` 一起结合使用。`如果将<router-view>都包裹起来的话`，里面渲染的组件都会被缓存。
+
+**需求（条件缓存）** 只想缓存一部分组件，不想所有的组件都被缓存。可以使用`keep-alive`组件中的`include/exclude`属性。`include`属性表示要缓存的组件名。*对于这个问题需要注意*，平时书写组件的时候，都需要将组件很清楚的表达当前组件的名字,用法如下。
+```js 
+export default {
+    name:'组件名字'
+}
+```
+`include`接受的类型可以为`String`,`RegExp`,`String数组`。 `exclude`属性跟它有着相反的作用，匹配到的组件不会被缓存。如果页面太多，不想缓存这个组件可以使用该属性。`include`的具体用法 
+```html
+<keep-alive :include="['component-1','component-2']">
+    <router-view />
+<keep-alive>
+```
+### 实现条件缓存：全局的`include`数组
+
+**需求** 有一个大的页面：首页A，列表页B，详情页C，一般都是可以从`A -> B -> C`，`B -> C` 在返回到`B`时，`B`需要保持到列表滚动的距离。然而对于`B -> A -> B`时，`B`不需要保持状态，是全新的需求 。
+
+从这个需求来看。`B组件`是条件缓存的，只要`C -> B` 时，保持缓存。当`A -> B`时，放弃缓存。解决方案如下：在vuex中定义一个全局的缓存组件，等待传给 `include`
+```js
+export defalut {
+    namespaced:true,
+    state:{
+        keepAliveComponents:[] //缓存数组
+    },
+    mutations:{
+        // 需要缓存的组件
+        keepAlive(state, component) {
+            !state.keepAliveComponents.includes(component) && state.keepAliveComponents.push(component)
+        },
+        // 不需要缓存的组件
+        noKeepAlive(state, component) {
+            const index = state.keepAliveComponents.indexOf(component)
+            index !== -1 && state.keepAliveComponents.splice(index, 1)
+        }
+    }
+}
+```
+
+在父页面中定义`keep-alive` ，并且需要传入全局的缓存中 
+```html
+<div class="app">
+    <!-- 传入include数组 -->
+    <keep-alive :include="keepAliveComponents">
+        <router-view />
+    <keep-alive>
+<div>
+```
+```js
+export default {
+    // 计算属性 
+    computed:{
+        ...mapState({
+            keepAliveComponents:state=> state.global.keepAliveComponentes
+        })
+    }
+}
+```
+
+缓存机制： 在路由配置页面中，约定`meta`属性 `keepAlive`，值为true表示组件徐需要缓存。在全局路由钩子`beforeEach`中对该属性进行处理。这种做法，对每一次进入该组件，都进行缓存。
+```js 
+const router = new Router({
+    routes:[
+        {
+            path:'/A/B',
+            name:'B',
+            component:B,
+            meta:{
+                title:'B页面',
+                keepAlive:true  //这里指定B组件的缓存性
+            }
+        }
+    ]
+})
+router.beforeEach((to, form ,next) =>{
+    //在路由全局钩子函数中，根据keepAive属性，统一设置页面的缓存行
+    // 作用时每次进入该组件，就将它缓存 
+    if (to.meta.keepALive) {
+        stroe.commit('global/keepAlive',to.name)
+    }
+})
+```
+取消缓存的时机：对缓存组件使用路由的组件钩子`beforeRouteLeave`。  `B -> A -> B` 时不需要缓存 `B` ,所以可以认为：当B的下一个页面不是`C`时就取消`B`的缓存，那么下次进入B组件的时候B就是全新的。
+```js 
+export default {
+    name:'B',
+    created(){
+        // 。。。设置滚动条在最顶部 
+    },
+    beforeRouteLeave(to, from, next){
+        // 判断页面是否是C ,如果不是则取消B 的缓存 
+        if (to.name !== 'C') { 
+            this.$store.commit('global/noKeepAlive', from.name)
+        }
+        // 如果是的，直接
+        next()
+    }
+}
+```
+因为组件B的条件缓存,是B自己职责。所以最好把该业务逻辑写在B的内部，而不是A中，这样不至于让组件之间的跳转变得混乱。
+
+[本节参考地址，点我，尊重原创！](https://juejin.im/post/5b407c2a6fb9a04fa91bcf0d)
+
+(本小节完！)
