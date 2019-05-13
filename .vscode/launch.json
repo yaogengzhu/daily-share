@@ -12,7 +12,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/day9/调用函数.js"
+            "program": "${workspaceFolder}/2019-5-13/03proxy.js"
         }
     ]
 }
