@@ -18,6 +18,7 @@
     * [js中的定时器](#17)
     * [Promise对象](#18)
     * [vue中如何keep-alive进行组件缓存](#19)
+    * [如何正确使用构造函数](#20)
 
     
 
@@ -986,3 +987,59 @@ export default {
 [本节参考地址，点我，尊重原创！](https://juejin.im/post/5b407c2a6fb9a04fa91bcf0d)
 
 (本小节完！)
+
+<h2 id=20> 如何正确使用构造函数 <h2>
+
+### 所以构造函数，就是专门用来生成实例对象的函数。一个构造函数可以生成多个实例对象。
+
+```js
+// 构造函数的使用方式      构造函数命名必须用大写来区分 
+var Foo = function(){
+    this.name 
+}
+// 实例化 必须使用new  
+var f = new Foo()  // 这个括号可以写可以不写 new可以执行函数 
+```
+####  构造函数有两个特点 
+
+- this 表示的是实例化的对象 
+- 每个实例话对象都必须使用new出来 
+
+*值得注意的是，如果不实用new 的话，是无法生成实例化对象的，这时构造函数的属性就会变成全局对象window的属性，为了避免这种情况 。最好使用严格模式*
+```js
+var Foo = function(){
+    'use strict'
+    this.name
+}
+```
+如果是实例化不使用new关键字的话就会报错。  但是如果不实用严格模式不会报错，产生全局变量，造成全局污染⚠️。
+
+### new 命令的原理 
+- 创建一个空对象，作为要返回的对象实例
+- 将这个空对象的原型指向构造函数的`prototype`属性上 
+- 将这个空对象赋值给函数内部的this关键字 
+- 开始执行构造函数的内部代码  
+
+也可以换个说法 
+- 在内存中开辟一片空间，存储创建的对象 
+- this 就是实例化的对象
+- 设置对象的属性和方法 
+- 把创建后的对象返回
+
+### 使用Object.create()创建实例化对象 
+```js
+let person = {
+    name:'zs',
+    age:23,
+    sayHello:function(){
+        console.log('hello')
+    }
+}
+
+// 使用Object.create() 实例化一个对象 
+let person1 = Object.create(person)
+console.log(person1.age)
+```
+[参考出处](https://wangdoc.com/javascript/oop/new.html#navbar)
+
+(本节完！)
