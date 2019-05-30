@@ -20,8 +20,8 @@
     * [vue中如何keep-alive进行组件缓存](#19)
     * [如何正确使用构造函数](#20)
     * [如何看待history和hash](#21)
-* [后期分享进行改变]
-    * [认识Object]()
+* [后期分享进行改变]()
+    * [认识Object](https://github.com/yaogengzhu/life-share/issues/1)
 
     
 

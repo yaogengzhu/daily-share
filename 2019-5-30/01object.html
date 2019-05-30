@@ -19,13 +19,18 @@
         // Object.prototype.sayHello = function () {
         //     console.log('ok')
         // }
-        Object.prototype.sayHello = function(){
-            console.log(this)
-        }
+        // Object.prototype.sayHello = function(){
+        //     console.log(this)
+        // }
 
-        // 实例化的方法  
-        let p = new Object()
-        p.sayHello()
+        // // 实例化的方法  
+        // let p = new Object()
+        // p.sayHello()
+        // 判断变量是否为对象的函数 
+        function isObject (obj){
+            return obj === Object(obj)
+        }
+        console.log(isObject([111]))
     </script>
 </body>
 
