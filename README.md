@@ -22,6 +22,8 @@
     * [如何看待history和hash](#21)
 * [后期分享进行改变]()
     * [认识Object](https://github.com/yaogengzhu/life-share/issues/1)
+* [es6的基本知识]()
+    * [数组方法的扩展，map,filter,reduce,forEach]()
 
     
 

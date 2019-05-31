@@ -10,20 +10,10 @@
 
 <body>
     <script>
-    // Object构造函数 
-    var obj = new Object()   
-    // 等同于 
-    var obj  = {}
-
-    // 
-    var  obj = {
-        name:'zs',
-        age:11
-    }
-
-    var obj1 = new Object(obj)
-    console.log(obj === obj1)    
-
+        // 数组中的reduce方法 
+        let arr  = [1,3,4,5]
+        let result = arr.reduce((pre,next) => pre+next)
+        console.log(result)
     </script>
 </body>
 

@@ -1,30 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-
 <body>
     <script>
-    // Object构造函数 
-    var obj = new Object()   
-    // 等同于 
-    var obj  = {}
-
-    // 
-    var  obj = {
-        name:'zs',
-        age:11
-    }
-
-    var obj1 = new Object(obj)
-    console.log(obj === obj1)    
-
+    // 数组中的filter 方法 
+    let arr = [1,3,4,5,56,]
+    let result = arr.filter(item => item>4)
+    console.log(result)   
+    // 可以用在过滤一些自己不要的数据上 
+     
     </script>
 </body>
-
 </html>
