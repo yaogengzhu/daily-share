@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 原来定一个一个构造函数 
+    function Person(){
+        this.name ="zs",
+        this.age = 13
+    }    
+    Person.prototype.sayHello = function(){
+        console.log('hello boys')
+    }
+
+    var person = new Person()
+    console.log(person.sayHello())
+
+
+    class Animal {
+        constructor (name,age){
+            this.name = name | 'zs'
+            this.age = age | 11
+        }
+        sayHello(){
+            console.log('hello zs')
+        }
+    }
+    let animal = new Animal()
+    console.log(animal.sayHello())
+    </script>
+</body>
+</html>
