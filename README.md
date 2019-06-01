@@ -20,10 +20,12 @@
     * [vue中如何keep-alive进行组件缓存](#19)
     * [如何正确使用构造函数](#20)
     * [如何看待history和hash](#21)
-* [后期分享进行改变]()
+* [原生js]()
     * [认识Object](https://github.com/yaogengzhu/life-share/issues/1)
 * [es6的基本知识]()
     * [数组方法的扩展，map,filter,reduce,forEach]()
+* [开发常识]()
+    * [如何进行邮箱校验]()
 
     
 
