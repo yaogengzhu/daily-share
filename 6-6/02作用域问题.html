@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = 4;
+        function b(x, y, a){
+            console.log(arguments)
+            // 私有作用域 
+            // var x , y ,a 
+            console.log(a);
+            arguments[2] = 10;
+            console.log(a);
+        }    
+        a = b(1,2,3);   // 函数没有返回值 。就是undefiend
+        console.log(a);
+        // arguments : 函数内部的实参集合，在非严格模式下，
+        // 函数中的型参变量存在映射机制（映射相互影响）
+    </script>
+</body>
+</html>

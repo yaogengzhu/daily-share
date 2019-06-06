@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fn (x, y){
+            // "use strict"
+            // 形参
+            var x, y ;
+            // arg
+            //  0:10 , length:1
+            var arg = arguments;
+            arg[0] = 100;
+            console.log(x);  //100 
+            y = 200;
+            console.log(arg[1]);  // undefined 
+        }    
+        fn(10);
+        /**
+         * 
+         * arguments 的映射机制  
+         * arg 和 形参 映射是arg的索引为基础完成的。
+         * arguments 和 形参的映射机制建立在函数执行后的一瞬间，此时能建立映射关系的会建立关系，
+         * 不能建立关系的以后都无法建立关系
+         * 
+        */
+    </script>
+</body>
+</html>

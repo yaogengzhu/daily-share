@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 题目1 
+        var a = 10 ,b = 11, c =12;
+        function test(a){
+            //  var a ;  var b 
+            a = 1;
+            var b = 2;
+            c = 3;
+        }   
+        test(10);
+        console.log(a); // 10 
+        console.log(b); // 11
+        console.log(c);  // 3
+        // 题目分析 
+
+        // 题目2 
+        /**
+         * 变量提升 
+         * 
+         * var a ; 不管条件是否成立，都要进行变量提升，而且在全局作用下
+         * 声明变量，相当于给window设置了一个对象的属性，而且两者之间建立了映射关系 
+         * 
+         * in : 检测某一个属性是否隶属于这个对象（不管这个是私有属性还是公有属性
+         * ，只要有这个属性，结果就是true 
+         * 
+         * hasOwnProperty:检测某一个属性是否为对象的私有属性（（只有这个属性是
+         * 私有的才会为true)
+         * 
+         * 
+         * 
+        */
+       // var a ;  //undefiend;
+        if(!("a" in window)){
+            var a = 1;
+        }
+        console.log(a);
+    </script>
+</body>
+</html>
