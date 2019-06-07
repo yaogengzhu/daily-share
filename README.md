@@ -26,6 +26,7 @@
     * [数组方法的扩展，map,filter,reduce,forEach](https://github.com/yaogengzhu/life-share/issues/2)
 * [开发常识]()
     * [如何进行邮箱校验](https://github.com/yaogengzhu/life-share/issues/3)
+    * [开启严格模式]()
 
     
 
