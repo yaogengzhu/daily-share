@@ -8,14 +8,18 @@
 </head>
 <body>
     <script>
-        /**
-         * 在严格模式下 ：
-         * 1.不支持argumes.callee   
-         * 2.argumnets和形参没有映射机制 
-         * 3.不允许设置重复属性
-         * 4.
-         * 
-        */
+        function foo (){
+            console.log(this.name)
+        }   
+        
+        var obj = {
+            name:"zs",
+            age:11
+        }
+        foo.apply(obj);
+        console.log()
+        console.dir(obj)
+        // console.log(foo())
     </script>
 </body>
 </html>
