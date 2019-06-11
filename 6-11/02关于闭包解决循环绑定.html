@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <script>
+        var ul = document.getElementById('ul').children;
+        // console.log(ul);
+        for(var i=0; i < ul.length; i++){
+            // console.log(ul[i])
+            // ul[i].onclick = function(){
+            //     console.log(i);
+            // }
+            ul[i].onclick = (function(i){
+                return function(){
+                    console.log(i);
+                }
+            })(i)
+        }
+        /**
+         * 1. 为啥不行 ？ 
+         * 事件绑定是异步编程，当触发点击行为，绑定方法执行的时候，外层循环已经结束；方法执行产生私有作用域，用到变量i，不是私有的变量。
+         * 按照作用域的查找机制，找到的是全局的i(此时全局的i已经成为循环最后一次的结果)
+         *  解决方案  
+         * 1. 自定义属性 
+         * 2. 闭包
+         * 3. Es6
+        */ 
+
+        // es6 方法  
+        for(let i=0; i < ul.length; i++){
+            inputs[i].onclick = function () {
+                alert(i);
+            }
+        }
+        /**
+         * 
+         * es6和闭包的机制类似，es6中使用let创建变量，会形成块级作用域，当前案例中，每一个轮
+         * 都会又一个自己的块级作用域，然后吧后续用到的索引都存储到自己的作用域中。
+        */
+
+    </script>
+</body>
+</html>
