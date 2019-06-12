@@ -28,6 +28,7 @@
     * [如何进行邮箱校验](https://github.com/yaogengzhu/life-share/issues/3)
     * [开启严格模式]()
     * [cookie,LocalStorage和SessionStorage的区别](#22)
+    * [typeof 和 instanceof 的区别](#23)
 
     
 
@@ -1137,3 +1138,33 @@ sessionStorage与localStorage的接口类似，但保存数据的生命周期与
 因为考虑到每个HTTP请求都会带着Cookie的信息，所以Cookie当然能是精简就精简力，比较常用的一个应用场景就是判断用户是否登陆，针对登陆过的用户服务端就在它登陆时往Cookie中祝福一段加密过的唯一识别单一用户的辨识码，下次只要读取这个值就可以判断当前用户是否登陆。曾经还使用Cookie来保存用户在电商网站上的购物车信息，如今有来localStorage，这一切问题变得越来越轻松。
 
 
+<h2 id="23">typeof 和 instanceof的区别</h2>
+
+### javascript有三种方法，可以确定一个值到底是什么类型的
+- typeof 运算符 
+- intenseof 运算符 
+- Object.prototype.toString 方法
+
+#### typeof运算符 返回的结果
+- 原始类型  number，string，boolean
+- 函数
+- undefined
+- object
+
+#### 以下情况返回object 
+- typeof window 
+- typeof {}
+- typeof []
+- typeof null
+
+#### 值得注意的以下情况 
+- 空数组[]返回的是object，这表示，JavaScript内部，数组本质是一种特殊的对象。
+- null的返回值是object，这是由于历史原因造成的，1995年JavaScript语言的第一版，所有值都设计成32位，其中最低的3位用来表述数据类型，object对应的值是000。当时，只设计了五种数据类型（对象、整数、浮点数、字符串和布尔值），完全没考虑null，只把它当作object的一种特殊值，32位全部为0。这是typeof null返回object的根本原因。
+
+当然了，为了兼容以前的代码，后来就没法修改。这并不是说null就属于对象，本质null是一个类似与undefined的特殊值。
+
+### instanceof运算符 
+instance 是判断变量是否为某个对象的实例，返回值为true或false  
+
+- 由于typeof对数组[]和对象{} 的返回值Object，无法区分数组和对象，但是instanceof可以区分。
+**数组** 返回的是true，因为数组是Object的一个子类。
