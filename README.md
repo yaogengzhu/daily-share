@@ -29,7 +29,8 @@
     * [开启严格模式]()
     * [cookie,LocalStorage和SessionStorage的区别](#22)
     * [typeof 和 instanceof 的区别](#23)
-
+* [Vue常识]()
+    * [computed计算属性和watch](24)
     
 
 <h2 id="2"> 数组的操作 </h2> 
@@ -1168,3 +1169,153 @@ instance 是判断变量是否为某个对象的实例，返回值为true或fals
 
 - 由于typeof对数组[]和对象{} 的返回值Object，无法区分数组和对象，但是instanceof可以区分。
 **数组** 返回的是true，因为数组是Object的一个子类。
+
+### 共同点：
+- 基本数据类型都可以判断
+
+### 不同点：
+- instanceof可以判断这个变量是否为某个函数的实例，而typeof不能
+
+<h2 id=24>computed计算属性和watch监听属性<h2>
+
+## 计算属性和监听器 
+
+### 计算属性 
+首先我们知道，模版内的表达式非常便利，但是设计他们的初衷时由于简单运算的，在模版中国放入太多的逻辑会这个模版难以维护。因此计算属性应运而生。
+
+如果不适用计算属性带来的复杂程度可以看下面的例子 
+
+### 对于复杂的逻辑而言，我们更多的应该使用计算属性
+下面我们来看一个基础的例子
+```html
+<div id="app">
+    <p>{{ msg }}</p>
+    <!-- 及其复杂的逻辑表达式非常不容易去维护 -->
+    <p>{{ msg.split('').reverse().join('') }}</p>
+</div>
+```
+```js
+const vm = new Vue({
+    el: '#app',
+    data: {
+        msg: 'hello'
+    }
+})
+```
+
+### 当我们使用计算属性的时候，看看效果的方便 
+```html
+  <div id="app">
+        <p>{{ msg }}</p>
+        <p>{{ msg.split('').reverse().join('') }}</p>
+        <p>{{ reveredMessage }}</p>
+    </div>
+```
+js
+```js
+const vm = new Vue({
+    el: '#app',
+        data: {
+            msg: 'hello',
+        },
+        computed: {
+            // 计算属性的getter 
+            reveredMessage: function () {
+                // this 指向时vm的实例
+                return this.msg.split('').reverse().join('')
+                }
+            }
+     })
+```
+
+### 计算属性缓存vs方法 
+当然我们可以注意到，我们可以在表达式中调用方法来达到同样的效果。  
+
+如同下面这个使用方法的例子 
+```html
+<!-- 这个方法直接调用来methods中的方法 -->
+<p> 调用methods中的方法 {{ changeMsg() }} </p>
+```
+js部分
+```js
+// 直接简写
+methods: {
+    changeMsg() {
+        return this.msg.split('').reverse().join('')
+    }
+}
+```
+
+我们可以将同一个函数定义一个方法而不是一个计算属性。两种方式的最终结果确实完全相同的，然而，不同的`计算属性是基于他们的响应式依赖进行缓存的`，只在相关响应式依赖发生改变时，他们才会重新求值。这就意味这只要msg还没发生改变，多次访问`reveredMessage`计算属性会立即返回之前的计算结果，而不必再次执行函数。
+
+这样也同样的意味这下面的计算属性将不再更新，因为 `Date.now()`不是响应式依赖：
+```js
+computed: {
+    now: function () {
+        return Date.now()
+    }
+}
+```
+相比之下，每当触发重新渲染时，调用方法总会再次执行函数
+
+**思考** 我们为什么使用computed计算属性，在我看来，简单来说，计算属性可以缓存。
+
+为们为什么需要缓存？假如我们有一个性能开销比较大的计算属性getCount, 它需要遍历一个巨大的数组并作出大量的计算。然后我们有可能有其他的计算属性依赖于getCount,如果没有缓存，我们将不可避免的多次去执行getCount的getter！。。。。当然了，如果你不希望有缓存，换一句话来说，你可以使用方法来代替。
+
+### 计算属性vs侦听属性 
+Vue提供了一种更为通用的方式来观察和响应Vue实列上的数据变化：`侦听属性`。当然你有一些数据需要随着其他数据的变化而变动时你很容易滥用`wathch`，--。
+然而呢，我们最好的做法时使用计算属性而不是命令式的watch回调。
+
+下面我们可以想想这个例子 
+```html
+<p> {{ fullName }} </p> 
+```
+
+主要看js代码 
+```js
+cosnt vm = new Vue({
+    el: '#app',
+    data: {
+        firstName: '',
+        lastName: '',
+        fullName: '',
+    },
+    watch: {
+        firstName: function (newVal, oldVal) {
+            this.fullName = newVal + this.lastVal
+        },
+        lastName: function (newVal, oldVal) {
+            this.fullName = this.firstName + newVal
+        }
+    }
+})
+```
+使用`watch`的话每次就只能监听到一个属性。而且命令是重复的，将它和计算属性进行对比。
+```html
+<p> {{ fullName }} </p> 
+```
+看js代码 
+```js
+cosnt vm = new Vue({
+    el: '#app',
+    data: {
+        firstName: '',
+        lastName: '',
+        // fullName: '',
+    },
+    computed: {
+        fullName: {
+            // 只需要执行一次就OK
+            return this.firstName + this.lastName
+        }
+    }   
+})
+```
+
+### 侦听器
+
+虽然计算属性在大多数情况下更加适合，但有时候也需要一个自定义的侦听器。这就是为什么Vue通过watch选项提供了一个更加通用的方法，来响应数据的变化。当需要在数据变化时执行异步或者开销较大的操作时，这个方法时最有用的。
+
+**总结**  以上这个例子，使用的`watch`选项中允许我们执行异步操作（访问一个API），限制我们执行该操作的频率，并在我们最终结果前，设置中间状态／。这些计算属性是无法做到的。
+
+当然我们除了有`watch`之外，我们还可以使用vm.$watch 这个API。
