@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = {
+            say: function() {
+                console.log('ok')
+            }
+        }    
+        var obj1 = {
+            eat: function() {
+                console.log(this)
+                console.log('eat')
+            }
+        }
+
+        // obj.call(obj1)
+        obj1.eat.call(obj)
+
+        obj1.eat()
+        obj1.eat.call(this)
+
+        // call 和 apply 异同在于传递的参数不一样！  call 传递的是单个的字符串类似。 而apply 传递进去的是类数组
+
+    </script>
+</body>
+</html>
