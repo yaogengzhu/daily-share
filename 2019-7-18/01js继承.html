@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 通过原型链继承 
+        function Animal() {
+            this.age = 10
+        }
+        function Cat() {
+            this.name = 'luck'
+        }
+        // 让cat的原型指向Animal 
+        Cat.prototype = new Animal()
+        var cat = new Cat()
+        console.log(cat.name, cat.age)
+
+
+        // 借用构造函数继承 
+        function Animal1() {
+            this.age = 10
+        }
+        function Cat1() {
+            Animal1.call(this) // 让cat的所有的对象借用了Animal的对象
+            this.name = 'luck'
+        }
+        // 让cat的原型指向Animal 
+        Cat.prototype = new Animal1()
+        var cat1 = new Cat1()
+        console.log(cat1.name, cat1.age)
+
+
+        // 原型和借用构造函数的混合继承 
+        function Animal2() {
+            this.age = 10
+        }
+        function Cat2() {
+            Animal2.call(this) // 让cat的所有的对象借用了Animal的对象
+            this.name = 'luck'
+        }
+        // 原型继承
+        Cat2.prototype.sayHello = function() {
+            console.log('ninhao')
+        }
+        // 让cat的原型指向Animal 
+        // Cat2.prototype = new Animal2()
+        var cat2 = new Cat2()
+        console.log(cat2.name, cat2.age)
+        console.log(cat2.sayHello())
+    </script>
+</body>
+</html>
