@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            box-sizing: border-box;
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+            /* display: inline-grid; */
+            /* display: -moz-inline-grid; */
+            /* display: inline-grid; */
+            /* display: grid; */
+            /* grid-template-columns: 100px 100px 100px;
+            grid-template-rows: 100px 100px 100px; */
+            /* 体验代码 */
+            /* grid-template-columns: 33.333%  33.333%  33.333%;
+            grid-template-rows: 33.33% 33.33% 33.33%; */
+            /* grid-template-columns: repeat(3, 33.33%);
+            grid-template-rows: repeat(3, 33.33%); */
+
+            /* grid-template-columns: repeat(3, 30px 30px 30px);
+            grid-template-rows: repeat(3, 30px 40px 40px); */
+            display: grid;
+            /* grid-template-rows: repeat(auto-fill, 300px);
+            grid-template-columns: repeat(auto-fill, 100px); */
+            grid-template-columns:  100px 3fr 3fr;
+            grid-template-rows: 1fr 2fr;
+        }
+
+        .box > div:nth-of-type(2n) {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+        .box > div:nth-of-type(2n + 1) {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+
+</html>
