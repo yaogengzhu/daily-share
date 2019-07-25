@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let myMap = new Map()
+        let myObj = {},
+            keyFunc = function () { },
+            keyString = 'stirng'
+
+        // 添加关键的健
+        myMap.set(keyString, '这是string？')
+        myMap.set(myObj, "和键keyObj关联的值")
+        myMap.set(keyFunc, "和键keyFunc关联的值")
+
+        console.log(myMap.size)
+
+        // 读取值
+        console.log(myMap.get(keyFunc))
+        console.log(myMap.get('stirng'))   // 因为keyString = 'string'
+        console.log(myMap.get({}))    // 值为undefined   因为呢， myObj !== {}
+        console.log(myMap.get(function () { }))  // undefined,  因为keyFunc !== function() {}
+
+        let goods_list = [
+            { id: 1, name: 3 },
+            { id: 2, name: 3 },
+            { id: 3, name: 3 },
+            { id: 4, name: 3 },
+            { id: 5, name: 3 },
+            { id: 6, name: 3 },
+            { id: 7, name: 3 },
+            { id: 8, name: 3 },
+            { id: 9, name: 3 },
+            { id: 10, name: 3 },
+        ]
+
+        let goodsIds = goods_list.map( item  => item.id)
+        console.log(goodsIds)
+
+    </script>
+</body>
+
+</html>
