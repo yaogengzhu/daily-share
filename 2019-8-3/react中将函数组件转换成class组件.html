@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- <script ></script> -->
+    <script type="text/babel">
+        /***
+         *  将函数组件转换成class组件 
+         *  -  创建一个同名的es6 class ,并且继承于React.Component.
+         *  -  添加一个空的render()方法 
+         *  -  将函数体移动到render() 方法中 
+         *  -  在render() 方法中使用this.props 替换 props  
+         *  -  删除剩余空的函数声明
+         * /
+        */
+
+        // 三个步骤将date ,从props 中移动到 state中 
+        // 1.将render()方法中的this.props.date 替换成 this.state.date 
+        // 2.添加一个class构造函数，然后在该函数中为this.state赋初值
+        // 3. Class 组件应该使用props 参数来调用父类的构造函数 （移除<Clock /> 中的date属性 
+        class Clock extends React.Component {
+            // 需要将props 传入到父类的构造函数中
+            constructor( props ) {
+                super(props)
+                this.state = {
+                    date: new Date()
+                }
+            }
+            render() {
+                return (
+                    <div>
+                        <h1> hello world </h1>
+                        <h2> It is { this.state.date.toLocaleTimeString()} </h2>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <Clock />,
+            document.getElementById('root')
+        )
+     
+        
+    </script>
+</body>
+
+</html>
