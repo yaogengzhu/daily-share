@@ -29,6 +29,10 @@
         // 1.将render()方法中的this.props.date 替换成 this.state.date 
         // 2.添加一个class构造函数，然后在该函数中为this.state赋初值
         // 3. Class 组件应该使用props 参数来调用父类的构造函数 （移除<Clock /> 中的date属性 
+
+
+
+        // 将生命周期方法添加到class函数中去
         class Clock extends React.Component {
             // 需要将props 传入到父类的构造函数中
             constructor( props ) {
@@ -36,6 +40,21 @@
                 this.state = {
                     date: new Date()
                 }
+            }
+            // 当Clock组件第一次被渲染到DOM中的时候，在React中被称为挂载 （mount)
+            componentDidMount() {
+                // 挂载
+                this.timeId = setInterval(() => this.tick() , 1000);
+            }
+            componentWillUnmount() {
+                // 卸载
+                clearInterval(this.timeId)
+            }
+            // 设置tick时间函数 
+            tick() {
+                this.setState({
+                    date: new Date()
+                })
             }
             render() {
                 return (
